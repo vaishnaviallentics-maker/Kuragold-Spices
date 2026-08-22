@@ -110,19 +110,6 @@ export default function CartPage() {
           <LinkButton href="/products" variant="primary" className="mt-6 inline-flex">
             Shop Products
           </LinkButton>
-
-          {suggestedProducts.length > 0 && (
-            <div className="mt-16 text-left border-t border-border-gold/60 pt-10">
-              <h2 className="mb-6 font-heading text-2xl font-bold text-maroon">
-                You may also like...
-              </h2>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {suggestedProducts.map((product) => (
-                  <CartSuggestedProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </main>
     )
