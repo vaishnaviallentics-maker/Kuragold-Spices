@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --maroon:   #6E0D0D;
+  --crimson:  #8B1A1A;
+  --cdk:      #5C0E0E;
+  --gold:     #C8962A;
+  --gold-l:   #E8B84B;
+  --ivory:    #FAF6EE;
+  --cream:    #F2EAD8;
+  --cream2:   #E8DCC8;
+  --text:     #221408;
+  --text-m:   #3A2414;
+  --border:   #DDD0B0;
+  --wa:       #25D366;
+  --wa-dk:    #1aab57;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Lato', sans-serif; background: var(--ivory); }

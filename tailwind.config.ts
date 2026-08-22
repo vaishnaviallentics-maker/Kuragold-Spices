@@ -9,8 +9,38 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        maroon: {
+          DEFAULT: "var(--maroon)",
+          dark: "var(--cdk)",
+          light: "var(--crimson)",
+        },
+        gold: {
+          DEFAULT: "var(--gold)",
+          light: "var(--gold-l)",
+          muted: "#C9A87A",
+        },
+        ivory: "var(--ivory)",
+        cream: {
+          DEFAULT: "var(--cream)",
+          dark: "var(--cream2)",
+        },
+        ink: "var(--text)",
+        muted: "var(--text-m)",
+        "border-gold": "var(--border)",
+        whatsapp: {
+          DEFAULT: "var(--wa)",
+          dark: "var(--wa-dk)",
+        },
+      },
+      fontFamily: {
+        heading: ["var(--font-playfair)", "serif"],
+        body: ["var(--font-lato)", "sans-serif"],
+        accent: ["var(--font-cormorant)", "serif"],
+      },
+      zIndex: {
+        splash: "9999",
+        nav: "800",
+        float: "600",
       },
     },
   },

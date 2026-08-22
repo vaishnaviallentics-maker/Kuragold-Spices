@@ -1,0 +1,12 @@
+export const WA_NUMBER          = process.env.NEXT_PUBLIC_WA_NUMBER ?? '918978726655'
+export const SHIPPING_CHARGE    = Number(process.env.NEXT_PUBLIC_SHIPPING_CHARGE ?? 60)
+export const FREE_SHIP_ABOVE    = Number(process.env.NEXT_PUBLIC_FREE_SHIPPING_ABOVE ?? 499)
+export const SITE_NAME          = 'Kura Gold Spices'
+export const TAGLINE            = 'Where Quality Comes to Life'
+export const CONTACT_PHONE      = '+91 99868 92121'
+export const CONTACT_WA         = '+91 89787 26655'
+export const CONTACT_EMAIL_GEN  = 'care@kuragoldspices.com'
+export const CONTACT_EMAIL_SUP  = 'support@kuragoldspices.com'
+export const LOCATION           = 'Hyderabad, Telangana, India'
+export const HOURS              = 'Open 24 Hours'
+export const FSSAI_LIC          = '23626030003544'
