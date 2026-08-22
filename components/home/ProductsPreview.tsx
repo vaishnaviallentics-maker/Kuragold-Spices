@@ -8,7 +8,7 @@ export function ProductsPreview({ products }: { products: Product[] }) {
     <section className="bg-ivory px-6 py-8 sm:px-10 lg:py-10">
       <div className="mx-auto max-w-7xl">
         <div className="mb-6 flex flex-col items-center text-center">
-          <SectionLabel className="justify-center">Our Range</SectionLabel>
+          <SectionLabel className="justify-center">Our Products</SectionLabel>
           <h2 className="font-heading text-2xl font-bold text-maroon sm:text-3xl lg:text-4xl">
             Pure Spices. Real Flavour.
           </h2>
