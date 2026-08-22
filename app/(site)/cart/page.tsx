@@ -82,7 +82,7 @@ function CartSuggestedProductCard({ product }: { product: Product }) {
 }
 
 export default function CartPage() {
-  const { items, updateQuantity, removeItem, clearCart, totalPrice } = useCart()
+  const { items, updateQuantity, removeItem, totalPrice } = useCart()
   const [suggestedProducts, setSuggestedProducts] = useState<Product[]>([])
 
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)

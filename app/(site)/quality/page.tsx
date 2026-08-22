@@ -441,7 +441,7 @@ export default async function QualityPage() {
         <div className="mx-auto max-w-6xl text-center">
           <SectionLabel className="justify-center">MORE THAN A SPICE.</SectionLabel>
           <h2 className="mt-1.5 font-heading text-2xl font-bold text-maroon sm:text-3xl">
-            It's Our Promise.
+            It&apos;s Our Promise.
           </h2>
 
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">

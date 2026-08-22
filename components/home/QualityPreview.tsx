@@ -40,7 +40,7 @@ const CARDS = [
   },
 ] as const
 
-export function QualityPreview({ claims }: { claims: SiteClaim[] }) {
+export function QualityPreview({ claims: _claims }: { claims?: SiteClaim[] } = {}) {
   return (
     <section className="bg-[#FAF6F0] px-6 py-8 sm:px-10 lg:py-10">
       <div className="mx-auto max-w-7xl text-center">

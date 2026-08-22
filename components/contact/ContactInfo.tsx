@@ -6,7 +6,6 @@ import {
   CONTACT_WA,
   HOURS,
   LOCATION,
-  SITE_NAME,
 } from '@/lib/constants'
 import { buildContactInquiryMessage } from '@/lib/whatsapp'
 

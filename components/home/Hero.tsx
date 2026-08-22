@@ -10,11 +10,11 @@ const HERO_BADGES = [
 ]
 
 interface HeroProps {
-  products: Product[]
+  products?: Product[]
   claims: SiteClaim[]
 }
 
-export function Hero({ products, claims }: HeroProps) {
+export function Hero({ claims }: HeroProps) {
   const natural = claims.find((c) => c.key === 'natural')
   const noColour = claims.find((c) => c.key === 'no_colour')
   const showBadge = Boolean(natural && noColour)
