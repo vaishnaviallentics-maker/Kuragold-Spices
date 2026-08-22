@@ -18,13 +18,13 @@ export default async function ProductsPage() {
     <main className="bg-ivory px-6 py-16 sm:px-10">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col items-center text-center">
-          <SectionLabel className="justify-center">Our Range</SectionLabel>
+          <SectionLabel className="justify-center">Our Products</SectionLabel>
           <h1 className="font-heading text-3xl font-bold text-maroon sm:text-4xl">
             Pure Spices. Real Flavour.
           </h1>
           <p className="mt-3 max-w-xl text-sm text-muted">
             Pick a pack size for each spice and add it to your cart — review everything before
-            sending your order on WhatsApp.
+            sending your order.
           </p>
         </div>
 
