@@ -4,10 +4,10 @@ import { SectionLabel } from '@/components/ui/SectionLabel'
 import type { Product, SiteClaim } from '@/types'
 
 const BULLETS = [
-  'Family-run by JK Enterprises',
-  'Based in Hyderabad, Telangana',
-  'Orders confirmed personally on WhatsApp',
-  'Multiple pack sizes for every kitchen',
+  'Traditional Cold-Ground Milling for Rich Essential Oils',
+  '100% Pure Sourcing with Zero Added Synthetic Colours',
+  'Handpicked Directly from Premier Indian Spice Farms',
+  'Hygienic Moisture-Lock Packaging for Peak Freshness',
 ]
 
 interface AboutPreviewProps {
@@ -36,9 +36,7 @@ export function AboutPreview({ products, claims }: AboutPreviewProps) {
           </h2>
           <GoldRule className="my-5" />
           <p className="max-w-xl text-base leading-relaxed text-muted">
-            JK Enterprises brings Kura Gold Spices to your kitchen from Hyderabad, Telangana. Every
-            order is handled with utmost care, ensuring purity and freshness from our hands to
-            yours.
+            At Kura Gold Spices, we blend centuries of traditional spice craft with modern food safety. Every spice is cold-processed to retain its natural essential oils, rich color, and authentic flavor for everyday Indian cooking.
           </p>
 
           <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
