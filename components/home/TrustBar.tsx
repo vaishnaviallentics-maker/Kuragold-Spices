@@ -3,9 +3,9 @@ import { FSSAI_LIC } from '@/lib/constants'
 import type { SiteClaim } from '@/types'
 
 const CERT_ITEMS = [
-  { key: 'fssai', label: `FSSAI Lic. ${FSSAI_LIC}`, icon: '/badges/fssai.webp', width: 28, height: 28, className: 'h-7 w-7' },
-  { key: 'telangana', label: 'Govt. of Telangana', icon: '/badges/telangana.webp', width: 28, height: 28, className: 'h-7 w-7' },
-  { key: 'make_india', label: 'Make in India', icon: '/badges/make_in_india.webp', width: 64, height: 36, className: 'h-9 w-16' },
+  { key: 'fssai', label: `FSSAI Lic. ${FSSAI_LIC}`, icon: '/badges/fssai.webp', width: 32, height: 32, className: 'h-8 w-8' },
+  { key: 'telangana', label: 'Govt. of Telangana', icon: '/badges/telangana.webp', width: 32, height: 32, className: 'h-8 w-8' },
+  { key: 'make_india', label: 'Make in India', icon: '/badges/make_in_india.webp', width: 64, height: 40, className: 'h-10 w-16 object-contain shrink-0' },
 ]
 
 export function TrustBar({ claims }: { claims: SiteClaim[] }) {

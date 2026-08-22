@@ -5,7 +5,7 @@ import type { Product, SiteClaim } from '@/types'
 const HERO_BADGES = [
   { label: '100% Pure', icon: '🌿' },
   { label: 'No Added Colour', icon: '✨' },
-  { label: 'Make In India', icon: '🇮🇳' },
+  { label: 'Make In India', icon: '✦' },
   { label: 'Net Wt. 50g - 500g', icon: '📦' },
 ]
 
