@@ -65,8 +65,8 @@ export default async function AboutPage() {
               About Kura Gold Spices
             </h1>
 
-            <p className="mt-1.5 font-accent text-sm sm:text-base italic text-gold-light/95 max-w-xl mx-auto leading-relaxed">
-              "Bringing Authentic Indian Flavours, Farm-Direct Purity & Culinary Heritage to Every Kitchen"
+            <p className="mt-1.5 font-accent text-sm sm:text-base italic text-[#F7E7CE] font-semibold max-w-xl mx-auto leading-relaxed">
+              &quot;Bringing Authentic Indian Flavours, Farm-Direct Purity &amp; Culinary Heritage to Every Kitchen&quot;
             </p>
 
             {/* Quick Trust Chips */}

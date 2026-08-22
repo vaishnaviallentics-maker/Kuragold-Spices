@@ -42,11 +42,10 @@ export function ContactInfo() {
         href={WA_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 flex flex-col items-center gap-2 rounded-2xl bg-whatsapp px-6 py-8 text-center text-white transition-colors hover:bg-whatsapp-dark"
+        className="mt-5 flex items-center justify-center gap-3 rounded-xl bg-whatsapp px-5 py-3.5 text-center text-white transition-all hover:bg-whatsapp-dark shadow-md"
       >
-        <MessageCircle size={40} aria-hidden="true" />
-        <p className="font-heading text-xl font-bold">Enquire on WhatsApp</p>
-        <p className="text-sm text-white/80">Tap to chat directly with our team on WhatsApp</p>
+        <MessageCircle size={22} className="shrink-0" aria-hidden="true" />
+        <span className="font-heading text-base font-bold tracking-wide">Enquire on WhatsApp</span>
       </a>
     </div>
   )

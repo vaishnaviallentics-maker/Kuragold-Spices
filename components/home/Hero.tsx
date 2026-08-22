@@ -20,8 +20,8 @@ export function Hero({ claims }: HeroProps) {
   const showBadge = Boolean(natural && noColour)
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#5C0E0E_0%,#7A1515_50%,#3D0A0A_100%)] px-6 py-20 sm:px-10 lg:py-0">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:min-h-[88vh] lg:grid-cols-2">
+    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#5C0E0E_0%,#7A1515_50%,#3D0A0A_100%)] px-6 py-10 sm:px-10 sm:py-16 lg:py-0">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 lg:gap-12 lg:min-h-[88vh] lg:grid-cols-2">
         <div>
           {showBadge && (
             <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/40 px-4 py-1.5 font-body text-xs font-bold uppercase tracking-wide text-gold-light">
