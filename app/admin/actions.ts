@@ -4,11 +4,6 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 
-// Home/About/Quality/Products-grid are all `force-dynamic` (never cached), so
-// they reflect Supabase changes on the very next request with no extra work.
-// /products/[slug] is the one statically generated page — it needs an
-// explicit revalidatePath whenever the product or a variant it shows changes.
-
 export async function toggleProductActive(id: string, isActive: boolean) {
   const supabase = createClient()
   await supabase.from('products').update({ is_active: isActive }).eq('id', id)
@@ -20,7 +15,7 @@ export async function createProduct() {
   const slug = `new-product-${Date.now()}`
   const { data, error } = await supabase
     .from('products')
-    .insert({ name: 'New Product', slug, category: 'spice', is_active: false })
+    .insert({ name: 'New Product', slug, category: 'pure_grounded', status: 'active', is_active: false })
     .select('id')
     .single()
 
@@ -39,17 +34,22 @@ export async function updateProduct(id: string, oldSlug: string, formData: FormD
     .update({
       name: String(formData.get('name') ?? ''),
       slug: newSlug,
-      category: String(formData.get('category') ?? 'spice'),
+      category: String(formData.get('category') ?? 'pure_grounded'),
       tagline: String(formData.get('tagline') ?? ''),
       description: String(formData.get('description') ?? ''),
       image_url: String(formData.get('image_url') ?? ''),
       is_active: formData.get('is_active') === 'on',
+      status: String(formData.get('status') ?? 'active'),
+      is_best_seller: formData.get('is_best_seller') === 'on',
+      is_featured: formData.get('is_featured') === 'on',
+      sort_order: Number(formData.get('sort_order') ?? 0),
     })
     .eq('id', id)
 
   revalidatePath('/admin/products')
   revalidatePath(`/admin/products/${id}`)
   revalidatePath(`/products/${oldSlug}`)
+  revalidatePath('/')
   if (newSlug !== oldSlug) revalidatePath(`/products/${newSlug}`)
 }
 
@@ -106,4 +106,50 @@ export async function markEnquiryRead(id: string, isRead: boolean) {
   const supabase = createClient()
   await supabase.from('enquiries').update({ is_read: isRead }).eq('id', id)
   revalidatePath('/admin/enquiries')
+}
+
+// ── BLOG ACTIONS ──────────────────────────────────────────────────────────
+export async function createBlog() {
+  const supabase = createClient()
+  const slug = `blog-${Date.now()}`
+  const { data, error } = await supabase
+    .from('blogs')
+    .insert({ title: 'New Blog Post', slug, category: 'general', is_published: false })
+    .select('id')
+    .single()
+
+  if (error || !data) return
+
+  revalidatePath('/admin/blog')
+  redirect(`/admin/blog/${data.id}`)
+}
+
+export async function updateBlog(id: string, formData: FormData) {
+  const supabase = createClient()
+  const isPublished = formData.get('is_published') === 'on'
+
+  await supabase
+    .from('blogs')
+    .update({
+      title: String(formData.get('title') ?? ''),
+      slug: String(formData.get('slug') ?? ''),
+      excerpt: String(formData.get('excerpt') ?? ''),
+      content: String(formData.get('content') ?? ''),
+      cover_image: String(formData.get('cover_image') ?? ''),
+      category: String(formData.get('category') ?? 'general'),
+      is_published: isPublished,
+      published_at: isPublished ? new Date().toISOString() : null,
+    })
+    .eq('id', id)
+
+  revalidatePath('/admin/blog')
+  revalidatePath(`/admin/blog/${id}`)
+  revalidatePath('/blog')
+}
+
+export async function deleteBlog(id: string) {
+  const supabase = createClient()
+  await supabase.from('blogs').delete().eq('id', id)
+  revalidatePath('/admin/blog')
+  redirect('/admin/blog')
 }

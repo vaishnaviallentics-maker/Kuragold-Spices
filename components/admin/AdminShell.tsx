@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { LayoutDashboard, Mail, Menu, Package, ShieldCheck, ShoppingBag, X, type LucideIcon } from 'lucide-react'
+import { BookOpen, LayoutDashboard, Mail, Menu, Package, ShieldCheck, ShoppingBag, X, type LucideIcon } from 'lucide-react'
 import { LogoutButton } from './LogoutButton'
 import { SITE_NAME } from '@/lib/constants'
 import { cn } from '@/lib/utils'
@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils'
 const NAV_ITEMS: { label: string; href: string; icon: LucideIcon }[] = [
   { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { label: 'Products', href: '/admin/products', icon: Package },
+  { label: 'Blog', href: '/admin/blog', icon: BookOpen },
   { label: 'Enquiries', href: '/admin/enquiries', icon: Mail },
   { label: 'Orders', href: '/admin/orders', icon: ShoppingBag },
   { label: 'Claims', href: '/admin/claims', icon: ShieldCheck },

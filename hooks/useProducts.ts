@@ -1,19 +1,19 @@
 import { createClient } from '@/lib/supabase/public'
-import type { Product } from '@/types'
+import type { Blog, Product } from '@/types'
 
 export async function getProducts(): Promise<Product[]> {
   const supabase = createClient()
   const { data, error } = await supabase
     .from('products')
     .select('*, product_variants(*)')
-    .eq('is_active', true)
+    .neq('status', 'future')
     .order('created_at')
 
   if (error || !data) return []
 
   return data.map((product) => ({
     ...product,
-    product_variants: [...product.product_variants].sort(
+    product_variants: [...(product.product_variants || [])].sort(
       (a, b) => a.sort_order - b.sort_order
     ),
   })) as Product[]
@@ -24,7 +24,6 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
   const { data, error } = await supabase
     .from('products')
     .select('*, product_variants(*)')
-    .eq('is_active', true)
     .eq('slug', slug)
     .maybeSingle()
 
@@ -32,6 +31,36 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
   return {
     ...data,
-    product_variants: [...data.product_variants].sort((a, b) => a.sort_order - b.sort_order),
+    product_variants: [...(data.product_variants || [])].sort((a, b) => a.sort_order - b.sort_order),
   } as Product
+}
+
+export async function getBestSellers(): Promise<Product[]> {
+  const supabase = createClient()
+  const { data, error } = await supabase
+    .from('products')
+    .select('*, product_variants(*)')
+    .eq('is_best_seller', true)
+    .order('created_at')
+
+  if (error || !data) return []
+
+  return data.map((product) => ({
+    ...product,
+    product_variants: [...(product.product_variants || [])].sort(
+      (a, b) => a.sort_order - b.sort_order
+    ),
+  })) as Product[]
+}
+
+export async function getPublishedBlogs(): Promise<Blog[]> {
+  const supabase = createClient()
+  const { data } = await supabase
+    .from('blogs')
+    .select('*')
+    .eq('is_published', true)
+    .order('published_at', { ascending: false })
+    .limit(3)
+
+  return (data as Blog[]) ?? []
 }

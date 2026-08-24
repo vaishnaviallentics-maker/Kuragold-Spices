@@ -1,6 +1,6 @@
 export const WA_NUMBER          = process.env.NEXT_PUBLIC_WA_NUMBER ?? '918978726655'
 export const SHIPPING_CHARGE    = Number(process.env.NEXT_PUBLIC_SHIPPING_CHARGE ?? 60)
-export const FREE_SHIP_ABOVE    = Number(process.env.NEXT_PUBLIC_FREE_SHIPPING_ABOVE ?? 499)
+export const FREE_SHIP_ABOVE    = Number(process.env.NEXT_PUBLIC_FREE_SHIPPING_ABOVE ?? 599)
 export const SITE_NAME          = 'Kura Gold Spices'
 export const TAGLINE            = 'Where Quality Comes to Life'
 export const CONTACT_PHONE      = '+91 99868 92121'
@@ -10,3 +10,12 @@ export const CONTACT_EMAIL_SUP  = 'support@kuragoldspices.com'
 export const LOCATION           = 'Hyderabad, Telangana, India'
 export const HOURS              = 'Open 24 Hours'
 export const FSSAI_LIC          = '23626030003544'
+
+export const FREE_SHIP_MESSAGE  = `Free Shipping On Orders Above ₹${FREE_SHIP_ABOVE}/- Across India`
+
+export const CATEGORY_LABELS: Record<string, string> = {
+  pure_grounded: 'Pure Grounded Spices',
+  blended:       'Blended Spices',
+  whole:         'Whole Spices',
+  combo:         'Combo Packs',
+}

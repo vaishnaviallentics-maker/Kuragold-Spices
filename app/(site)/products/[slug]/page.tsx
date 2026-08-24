@@ -1,16 +1,14 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { MessageCircle } from 'lucide-react'
 import { ProductPurchasePanel } from '@/components/products/ProductPurchasePanel'
+import { LinkButton } from '@/components/ui/Button'
 import { getProductBySlug, getProducts } from '@/hooks/useProducts'
+import { CATEGORY_LABELS } from '@/lib/constants'
+import { buildComingSoonNotifyMessage } from '@/lib/whatsapp'
 
 const PLACEHOLDER_DESCRIPTION = '[To be confirmed by Sir]'
-
-const CATEGORY_LABELS: Record<string, string> = {
-  masala: 'Masala Blend',
-  combo: 'Combo Pack',
-  spice: 'Spice Powder',
-}
 
 interface ProductPageProps {
   params: { slug: string }
@@ -38,7 +36,49 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const product = await getProductBySlug(params.slug)
   if (!product) notFound()
 
+  const isComingSoon = product.status === 'coming_soon'
   const hasDescription = Boolean(product.description) && product.description !== PLACEHOLDER_DESCRIPTION
+
+  if (isComingSoon) {
+    return (
+      <main className="bg-ivory px-6 py-16 sm:px-10">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="font-body text-xs font-bold uppercase tracking-widest text-gold mb-2">
+            {CATEGORY_LABELS[product.category] ?? 'Pure Spice'}
+          </p>
+          <h1 className="font-heading text-3xl font-bold text-maroon sm:text-4xl mb-2">{product.name}</h1>
+          {product.tagline && (
+            <p className="font-accent text-lg italic text-gold mb-8">{product.tagline}</p>
+          )}
+
+          <div className="rounded-3xl border border-gold/40 bg-white p-8 sm:p-10 shadow-lg mb-8">
+            <span className="inline-block rounded-full bg-maroon-dark px-6 py-2 font-body text-xs font-bold uppercase tracking-widest text-gold-light mb-4 shadow-sm">
+              Coming Soon
+            </span>
+            <p className="font-heading text-xl font-bold text-maroon mb-3">
+              We are working on bringing this spice to you.
+            </p>
+            <p className="text-sm text-muted mb-8 leading-relaxed max-w-md mx-auto">
+              Get notified immediately on WhatsApp as soon as this product is available for order.
+            </p>
+
+            <a
+              href={buildComingSoonNotifyMessage(product.name)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border-2 border-maroon bg-cream/60 px-8 py-3.5 font-body text-xs font-bold uppercase tracking-widest text-maroon hover:bg-maroon hover:text-ivory shadow-md transition-transform hover:scale-105"
+            >
+              NOTIFY ME
+            </a>
+          </div>
+
+          <LinkButton href="/products" variant="outline">
+            ← Back to All Products
+          </LinkButton>
+        </div>
+      </main>
+    )
+  }
 
   return (
     <main className="bg-ivory px-6 py-16 sm:px-10">

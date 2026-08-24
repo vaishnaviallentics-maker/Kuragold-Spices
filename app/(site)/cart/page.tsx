@@ -8,6 +8,7 @@ import { LinkButton } from '@/components/ui/Button'
 import { QuantityStepper } from '@/components/products/QuantityStepper'
 import { useCart } from '@/context/CartContext'
 import { getProducts } from '@/hooks/useProducts'
+import { SHIPPING_CHARGE, FREE_SHIP_ABOVE } from '@/lib/constants'
 import { buildCartOrderMessage } from '@/lib/whatsapp'
 import type { Product } from '@/types'
 
@@ -217,17 +218,44 @@ export default function CartPage() {
                 Order Summary
               </h2>
 
-              <div className="mt-4 space-y-3 font-body text-sm text-muted">
-                <div className="flex justify-between border-b border-border-gold/40 pb-3">
-                  <span>Subtotal ({itemCount} {itemCount === 1 ? 'item' : 'items'})</span>
-                  <span className="font-bold text-maroon">₹{totalPrice.toLocaleString('en-IN')}</span>
-                </div>
+              {(() => {
+                const shipping = totalPrice >= FREE_SHIP_ABOVE ? 0 : SHIPPING_CHARGE
+                const remaining = FREE_SHIP_ABOVE - totalPrice
+                const grandTotal = totalPrice + shipping
 
-                <div className="flex justify-between pt-1 font-body text-lg font-bold text-maroon">
-                  <span>Total Amount</span>
-                  <span className="text-xl">₹{totalPrice.toLocaleString('en-IN')}</span>
-                </div>
-              </div>
+                return (
+                  <div className="mt-4 space-y-3 font-body text-sm text-muted">
+                    <div className="flex justify-between border-b border-border-gold/40 pb-3">
+                      <span>Subtotal ({itemCount} {itemCount === 1 ? 'item' : 'items'})</span>
+                      <span className="font-bold text-maroon">₹{totalPrice.toLocaleString('en-IN')}</span>
+                    </div>
+
+                    <div className="border-b border-border-gold/40 pb-3">
+                      {totalPrice >= FREE_SHIP_ABOVE ? (
+                        <div className="flex justify-between font-bold text-emerald-700">
+                          <span>🎉 Delivery Charge</span>
+                          <span>FREE</span>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="flex justify-between">
+                            <span>Delivery Charge</span>
+                            <span className="font-bold text-maroon">₹{SHIPPING_CHARGE}</span>
+                          </div>
+                          <p className="mt-1 text-xs text-gold font-semibold">
+                            Add ₹{remaining} more for FREE Shipping across India
+                          </p>
+                        </>
+                      )}
+                    </div>
+
+                    <div className="flex justify-between pt-1 font-body text-lg font-bold text-maroon">
+                      <span>Total Amount</span>
+                      <span className="text-xl">₹{grandTotal.toLocaleString('en-IN')}</span>
+                    </div>
+                  </div>
+                )
+              })()}
 
               <p className="mt-2 text-[11px] text-muted leading-relaxed">
                 MRP product total only. Order details and confirmation handled directly over WhatsApp.

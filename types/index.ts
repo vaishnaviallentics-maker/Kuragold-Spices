@@ -17,6 +17,23 @@ export interface Product {
   category: string
   is_active: boolean
   product_variants: ProductVariant[]
+  status?: 'active' | 'coming_soon' | 'future'
+  is_best_seller?: boolean
+  is_featured?: boolean
+  sort_order?: number
+}
+
+export interface Blog {
+  id: string
+  title: string
+  slug: string
+  excerpt: string
+  content: string
+  cover_image: string
+  category: string
+  is_published: boolean
+  published_at: string
+  created_at: string
 }
 
 export interface Enquiry {

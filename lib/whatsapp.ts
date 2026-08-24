@@ -65,4 +65,9 @@ I have an inquiry regarding Kura Gold Spices products and orders. Please assist 
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`
 }
 
+export function buildComingSoonNotifyMessage(productName: string): string {
+  const message = `Hello Kura Gold Spices Team,\n\nI am interested in "${productName}" which is listed as Coming Soon. Please notify me when it becomes available.\n\nThank you!`
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`
+}
+
 

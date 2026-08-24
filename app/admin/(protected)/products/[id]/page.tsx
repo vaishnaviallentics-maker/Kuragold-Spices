@@ -19,7 +19,7 @@ export default async function EditProductPage({ params }: { params: { id: string
 
   if (!product) notFound()
 
-  const variants = [...(product.product_variants as ProductVariant[])].sort(
+  const variants = [...((product.product_variants as ProductVariant[]) || [])].sort(
     (a, b) => a.sort_order - b.sort_order
   )
 
@@ -29,24 +29,37 @@ export default async function EditProductPage({ params }: { params: { id: string
 
       <form
         action={updateProduct.bind(null, product.id, product.slug)}
-        className="flex max-w-2xl flex-col gap-4 rounded-xl border border-border-gold/60 bg-white p-6"
+        className="flex max-w-2xl flex-col gap-4 rounded-xl border border-border-gold/60 bg-white p-6 shadow-xs"
       >
         <div>
           <label className={labelClass}>Product Name</label>
-          <input name="name" defaultValue={product.name} className={inputClass} />
+          <input name="name" defaultValue={product.name} required className={inputClass} />
         </div>
 
         <div>
           <label className={labelClass}>Slug</label>
-          <input name="slug" defaultValue={product.slug} className={inputClass} />
+          <input name="slug" defaultValue={product.slug} required className={inputClass} />
         </div>
 
-        <div>
-          <label className={labelClass}>Category</label>
-          <select name="category" defaultValue={product.category} className={inputClass}>
-            <option value="spice">Spice</option>
-            <option value="masala">Masala</option>
-          </select>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <label className={labelClass}>Category</label>
+            <select name="category" defaultValue={product.category || 'pure_grounded'} className={inputClass}>
+              <option value="pure_grounded">Pure Grounded Spices</option>
+              <option value="blended">Blended Spices</option>
+              <option value="whole">Whole Spices</option>
+              <option value="combo">Combo Packs</option>
+            </select>
+          </div>
+
+          <div>
+            <label className={labelClass}>Status</label>
+            <select name="status" defaultValue={product.status ?? 'active'} className={inputClass}>
+              <option value="active">Active — Live with Add to Cart</option>
+              <option value="coming_soon">Coming Soon — Visible, no cart</option>
+              <option value="future">Future — Hidden from public</option>
+            </select>
+          </div>
         </div>
 
         <div>
@@ -64,16 +77,33 @@ export default async function EditProductPage({ params }: { params: { id: string
           <input name="image_url" defaultValue={product.image_url ?? ''} className={inputClass} />
         </div>
 
-        <label className="flex items-center gap-2 font-body text-sm font-bold text-ink">
-          <input type="checkbox" name="is_active" defaultChecked={product.is_active} className="h-4 w-4" />
-          Active on public site
-        </label>
+        <div>
+          <label className={labelClass}>Sort Order (Lower = First)</label>
+          <input type="number" name="sort_order" defaultValue={product.sort_order ?? 0} className={inputClass} />
+        </div>
+
+        <div className="flex flex-col gap-2 pt-2 border-t border-border-gold/40">
+          <label className="flex items-center gap-2 font-body text-sm font-bold text-ink cursor-pointer">
+            <input type="checkbox" name="is_best_seller" defaultChecked={product.is_best_seller ?? false} className="h-4 w-4 rounded" />
+            Mark as Best Seller (displays in Home page Best Sellers)
+          </label>
+
+          <label className="flex items-center gap-2 font-body text-sm font-bold text-ink cursor-pointer">
+            <input type="checkbox" name="is_featured" defaultChecked={product.is_featured ?? false} className="h-4 w-4 rounded" />
+            Mark as Featured
+          </label>
+
+          <label className="flex items-center gap-2 font-body text-sm font-bold text-ink cursor-pointer">
+            <input type="checkbox" name="is_active" defaultChecked={product.is_active} className="h-4 w-4 rounded" />
+            Active on public site
+          </label>
+        </div>
 
         <button
           type="submit"
-          className="mt-2 self-start rounded-full bg-gold px-6 py-3 font-body text-sm font-bold uppercase tracking-wide text-maroon-dark transition-colors hover:bg-gold-light"
+          className="mt-2 self-start rounded-full bg-maroon px-8 py-3 font-body text-xs font-bold uppercase tracking-wide text-white transition-colors hover:bg-maroon-dark shadow-md"
         >
-          Save
+          Save Changes
         </button>
       </form>
 
