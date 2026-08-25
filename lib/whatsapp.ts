@@ -1,4 +1,4 @@
-import { WA_NUMBER } from './constants'
+import { FREE_SHIP_ABOVE, SHIPPING_CHARGE, WA_NUMBER } from './constants'
 import type { CartItem } from '@/types'
 
 export function buildCartOrderMessage(items: CartItem[]): string {
@@ -9,7 +9,11 @@ export function buildCartOrderMessage(items: CartItem[]): string {
     )
     .join('\n')
 
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const shipping = subtotal >= FREE_SHIP_ABOVE ? 0 : SHIPPING_CHARGE
+  const grandTotal = subtotal + shipping
+
+  const shippingText = shipping === 0 ? 'FREE 🎉' : `₹${shipping}`
 
   const message = `Hello Kura Gold Spices Team,
 
@@ -17,7 +21,11 @@ I would like to place an order for the following items:
 
 ${lines}
 
-*Total Order Amount: ₹${total.toLocaleString('en-IN')}*
+--------------------------------
+• Subtotal: ₹${subtotal.toLocaleString('en-IN')}
+• Delivery Charge: ${shippingText}
+*Total Payable Amount: ₹${grandTotal.toLocaleString('en-IN')}*
+--------------------------------
 
 Please confirm item availability and share payment & dispatch details. Thank you!`
 
@@ -35,14 +43,19 @@ export function buildSingleProductOrderMessage(
   quantity: number = 1
 ): string {
   const qtyText = quantity > 1 ? ` × ${quantity}` : ''
-  const totalPrice = price * quantity
+  const itemTotal = price * quantity
+  const shipping = itemTotal >= FREE_SHIP_ABOVE ? 0 : SHIPPING_CHARGE
+  const grandTotal = itemTotal + shipping
+  const shippingText = shipping === 0 ? 'FREE 🎉' : `₹${shipping}`
 
   const message = `Hello Kura Gold Spices Team,
 
 I am interested in ordering:
 • *Product:* ${productName}
 • *Pack Size:* ${sizeLabel}${qtyText}
-• *Price:* ₹${totalPrice.toLocaleString('en-IN')}
+• *Item Subtotal:* ₹${itemTotal.toLocaleString('en-IN')}
+• *Delivery Charge:* ${shippingText}
+*Total Payable Amount: ₹${grandTotal.toLocaleString('en-IN')}*
 
 Please confirm availability and share payment & shipping details. Thank you!`
 
