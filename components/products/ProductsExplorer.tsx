@@ -192,60 +192,23 @@ export function ProductsExplorer({ initialProducts }: { initialProducts: Product
             </div>
           </div>
 
-          {/* WEIGHT / PACK SIZE */}
+          {/* PACK SIZE */}
           <div className="border-t border-border-gold/40 pt-5">
-            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-maroon mb-3">
-              Weight / Pack Size
+            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-maroon mb-2.5">
+              PACK SIZE
             </h3>
-            <div className="space-y-2 font-body text-xs text-ink">
-              <label
-                onClick={() => setSelectedSize('all')}
-                className="flex items-center gap-2.5 cursor-pointer py-1 group select-none"
-              >
-                <div
-                  className={cn(
-                    'h-4 w-4 rounded-full border flex items-center justify-center transition-all',
-                    selectedSize === 'all'
-                      ? 'border-gold bg-gold/10'
-                      : 'border-border-gold group-hover:border-gold'
-                  )}
-                >
-                  {selectedSize === 'all' && (
-                    <div className="h-2 w-2 rounded-full bg-gold" />
-                  )}
-                </div>
-                <span className={cn('font-semibold', selectedSize === 'all' ? 'text-maroon' : 'text-ink')}>
-                  All Sizes ({activeProductsCount})
-                </span>
-              </label>
-
-              {availableSizes.map(([size, count]) => {
-                const isSelected = selectedSize === size
-                return (
-                  <label
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className="flex items-center gap-2.5 cursor-pointer py-1 group select-none"
-                  >
-                    <div
-                      className={cn(
-                        'h-4 w-4 rounded-full border flex items-center justify-center transition-all',
-                        isSelected
-                          ? 'border-gold bg-gold/10'
-                          : 'border-border-gold group-hover:border-gold'
-                      )}
-                    >
-                      {isSelected && (
-                        <div className="h-2 w-2 rounded-full bg-gold" />
-                      )}
-                    </div>
-                    <span className={cn('font-semibold', isSelected ? 'text-gold-dark font-bold' : 'text-ink')}>
-                      {size} <span className="text-muted font-normal">({count})</span>
-                    </span>
-                  </label>
-                )
-              })}
-            </div>
+            <select
+              value={selectedSize}
+              onChange={(e) => setSelectedSize(e.target.value)}
+              className="w-full rounded-2xl border border-border-gold/80 bg-white py-2.5 px-4 font-body text-xs font-bold text-ink outline-none focus:border-maroon cursor-pointer"
+            >
+              <option value="all">All Sizes ({activeProductsCount})</option>
+              {availableSizes.map(([size, count]) => (
+                <option key={size} value={size}>
+                  {size} ({count})
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* SORT BY */}
