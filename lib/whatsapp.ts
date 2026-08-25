@@ -1,7 +1,7 @@
-import { FREE_SHIP_ABOVE, SHIPPING_CHARGE, WA_NUMBER } from './constants'
+import { FREE_SHIP_HYD, SHIPPING_CHARGE, WA_NUMBER } from './constants'
 import type { CartItem } from '@/types'
 
-export function buildCartOrderMessage(items: CartItem[]): string {
+export function buildCartOrderMessage(items: CartItem[], pincode: string = ''): string {
   const lines = items
     .map(
       (item, i) =>
@@ -10,10 +10,9 @@ export function buildCartOrderMessage(items: CartItem[]): string {
     .join('\n')
 
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
-  const shipping = subtotal >= FREE_SHIP_ABOVE ? 0 : SHIPPING_CHARGE
+  const shipping = subtotal >= FREE_SHIP_HYD ? 0 : SHIPPING_CHARGE
   const grandTotal = subtotal + shipping
-
-  const shippingText = shipping === 0 ? 'FREE 🎉' : `₹${shipping}`
+  const shippingText = shipping === 0 ? `FREE 🎉 (Order ≥ ₹${FREE_SHIP_HYD})` : `₹${shipping}`
 
   const message = `Hello Kura Gold Spices Team,
 
@@ -23,6 +22,7 @@ ${lines}
 
 --------------------------------
 • Subtotal: ₹${subtotal.toLocaleString('en-IN')}
+• Delivery Area: Hyderabad Local${pincode ? ` (${pincode})` : ''}
 • Delivery Charge: ${shippingText}
 *Total Payable Amount: ₹${grandTotal.toLocaleString('en-IN')}*
 --------------------------------
@@ -44,7 +44,7 @@ export function buildSingleProductOrderMessage(
 ): string {
   const qtyText = quantity > 1 ? ` × ${quantity}` : ''
   const itemTotal = price * quantity
-  const shipping = itemTotal >= FREE_SHIP_ABOVE ? 0 : SHIPPING_CHARGE
+  const shipping = itemTotal >= FREE_SHIP_HYD ? 0 : SHIPPING_CHARGE
   const grandTotal = itemTotal + shipping
   const shippingText = shipping === 0 ? 'FREE 🎉' : `₹${shipping}`
 

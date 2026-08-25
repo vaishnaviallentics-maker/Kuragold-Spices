@@ -23,6 +23,7 @@ export function ProductsExplorer({ initialProducts }: { initialProducts: Product
 
   const urlCategory = searchParams.get('category') ?? 'all'
   const [selectedCategory, setSelectedCategory] = useState<string>(urlCategory)
+  const [selectedSize, setSelectedSize] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [sortBy, setSortBy] = useState<string>('newest')
 
@@ -34,6 +35,36 @@ export function ProductsExplorer({ initialProducts }: { initialProducts: Product
     { key: 'combo', label: CATEGORY_LABELS.combo },
   ]
 
+  // Dynamically extract all available pack sizes across active products with count
+  const availableSizes = useMemo(() => {
+    const sizeMap = new Map<string, number>()
+    initialProducts.forEach((p) => {
+      // Exclude coming_soon or future products from size calculations
+      if (p.status === 'coming_soon' || p.status === 'future') return
+
+      if (p.product_variants && p.product_variants.length > 0) {
+        p.product_variants.forEach((v) => {
+          sizeMap.set(v.size_label, (sizeMap.get(v.size_label) ?? 0) + 1)
+        })
+      }
+    })
+
+    const customOrder = ['50g', '100g', '200g', '500g', '1kg', '3x100g', '3x500g']
+    return Array.from(sizeMap.entries()).sort((a, b) => {
+      const idxA = customOrder.indexOf(a[0])
+      const idxB = customOrder.indexOf(b[0])
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB
+      if (idxA !== -1) return -1
+      if (idxB !== -1) return 1
+      return a[0].localeCompare(b[0])
+    })
+  }, [initialProducts])
+
+  // Active products count for "All Sizes" label
+  const activeProductsCount = useMemo(() => {
+    return initialProducts.filter((p) => p.status !== 'coming_soon' && p.status !== 'future').length
+  }, [initialProducts])
+
   // Filter & Sort Logic
   const filteredProducts = useMemo(() => {
     let result = [...initialProducts]
@@ -41,6 +72,16 @@ export function ProductsExplorer({ initialProducts }: { initialProducts: Product
     // Category filter
     if (selectedCategory !== 'all') {
       result = result.filter((p) => p.category === selectedCategory)
+    }
+
+    // Size / Weight filter (only applies to active purchasable products)
+    if (selectedSize !== 'all') {
+      result = result.filter(
+        (p) =>
+          p.status !== 'coming_soon' &&
+          p.status !== 'future' &&
+          p.product_variants?.some((v) => v.size_label === selectedSize)
+      )
     }
 
     // Search query filter
@@ -77,7 +118,7 @@ export function ProductsExplorer({ initialProducts }: { initialProducts: Product
     })
 
     return result
-  }, [initialProducts, selectedCategory, searchQuery, sortBy])
+  }, [initialProducts, selectedCategory, selectedSize, searchQuery, sortBy])
 
   const handleCategorySelect = (key: string) => {
     setSelectedCategory(key)
@@ -90,12 +131,17 @@ export function ProductsExplorer({ initialProducts }: { initialProducts: Product
 
   const handleClearFilters = () => {
     setSelectedCategory('all')
+    setSelectedSize('all')
     setSearchQuery('')
     setSortBy('newest')
     router.push('/products', { scroll: false })
   }
 
-  const hasActiveFilters = selectedCategory !== 'all' || searchQuery.trim() !== '' || sortBy !== 'newest'
+  const hasActiveFilters =
+    selectedCategory !== 'all' ||
+    selectedSize !== 'all' ||
+    searchQuery.trim() !== '' ||
+    sortBy !== 'newest'
 
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
@@ -146,8 +192,64 @@ export function ProductsExplorer({ initialProducts }: { initialProducts: Product
             </div>
           </div>
 
+          {/* WEIGHT / PACK SIZE */}
+          <div className="border-t border-border-gold/40 pt-5">
+            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-maroon mb-3">
+              Weight / Pack Size
+            </h3>
+            <div className="space-y-2 font-body text-xs text-ink">
+              <label
+                onClick={() => setSelectedSize('all')}
+                className="flex items-center gap-2.5 cursor-pointer py-1 group select-none"
+              >
+                <div
+                  className={cn(
+                    'h-4 w-4 rounded-full border flex items-center justify-center transition-all',
+                    selectedSize === 'all'
+                      ? 'border-gold bg-gold/10'
+                      : 'border-border-gold group-hover:border-gold'
+                  )}
+                >
+                  {selectedSize === 'all' && (
+                    <div className="h-2 w-2 rounded-full bg-gold" />
+                  )}
+                </div>
+                <span className={cn('font-semibold', selectedSize === 'all' ? 'text-maroon' : 'text-ink')}>
+                  All Sizes ({activeProductsCount})
+                </span>
+              </label>
+
+              {availableSizes.map(([size, count]) => {
+                const isSelected = selectedSize === size
+                return (
+                  <label
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className="flex items-center gap-2.5 cursor-pointer py-1 group select-none"
+                  >
+                    <div
+                      className={cn(
+                        'h-4 w-4 rounded-full border flex items-center justify-center transition-all',
+                        isSelected
+                          ? 'border-gold bg-gold/10'
+                          : 'border-border-gold group-hover:border-gold'
+                      )}
+                    >
+                      {isSelected && (
+                        <div className="h-2 w-2 rounded-full bg-gold" />
+                      )}
+                    </div>
+                    <span className={cn('font-semibold', isSelected ? 'text-gold-dark font-bold' : 'text-ink')}>
+                      {size} <span className="text-muted font-normal">({count})</span>
+                    </span>
+                  </label>
+                )
+              })}
+            </div>
+          </div>
+
           {/* SORT BY */}
-          <div>
+          <div className="border-t border-border-gold/40 pt-5">
             <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-maroon mb-2.5">
               SORT BY
             </h3>

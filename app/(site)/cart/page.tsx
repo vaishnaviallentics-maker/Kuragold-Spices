@@ -8,7 +8,7 @@ import { LinkButton } from '@/components/ui/Button'
 import { QuantityStepper } from '@/components/products/QuantityStepper'
 import { useCart } from '@/context/CartContext'
 import { getProducts } from '@/hooks/useProducts'
-import { SHIPPING_CHARGE, FREE_SHIP_ABOVE } from '@/lib/constants'
+import { FREE_SHIP_HYD, FREE_SHIP_INDIA, SHIPPING_CHARGE, isHyderabadPincode } from '@/lib/constants'
 import { buildCartOrderMessage } from '@/lib/whatsapp'
 import type { Product } from '@/types'
 
@@ -85,8 +85,11 @@ function CartSuggestedProductCard({ product }: { product: Product }) {
 export default function CartPage() {
   const { items, updateQuantity, removeItem, totalPrice } = useCart()
   const [suggestedProducts, setSuggestedProducts] = useState<Product[]>([])
+  const [pincode, setPincode] = useState('')
 
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
+
+  const isHydPin = pincode.length >= 3 ? isHyderabadPincode(pincode) : true
 
   useEffect(() => {
     getProducts().then((allProducts) => {
@@ -97,7 +100,7 @@ export default function CartPage() {
   }, [items])
 
   const handleCheckout = () => {
-    window.open(buildCartOrderMessage(items), '_blank', 'noopener,noreferrer')
+    window.open(buildCartOrderMessage(items, pincode), '_blank', 'noopener,noreferrer')
   }
 
   if (items.length === 0) {
@@ -218,9 +221,42 @@ export default function CartPage() {
                 Order Summary
               </h2>
 
+              {/* Location Badge & Pincode Checker */}
+              <div className="mt-4 rounded-xl border border-border-gold/60 bg-cream/30 p-3.5 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="font-body text-xs font-bold text-maroon">Delivery Location</span>
+                  <span className="font-body text-[10px] font-semibold text-emerald-700">📍 Hyderabad Area Only</span>
+                </div>
+
+                <div className="rounded-lg border border-border-gold/40 bg-white p-2.5 text-center">
+                  <p className="font-body text-xs font-bold text-maroon">
+                    🚚 FREE Delivery on Orders Above ₹{FREE_SHIP_HYD}/-
+                  </p>
+                  <p className="mt-0.5 text-[11px] text-muted">
+                    We currently deliver exclusively across Hyderabad & Telangana
+                  </p>
+                </div>
+
+                <div className="relative pt-1">
+                  <input
+                    type="text"
+                    maxLength={6}
+                    value={pincode}
+                    onChange={(e) => setPincode(e.target.value)}
+                    placeholder="Enter 6-digit Pincode (e.g. 500001)"
+                    className="w-full rounded-lg border border-border-gold/80 bg-white py-1.5 px-3 font-body text-xs text-ink outline-none focus:border-maroon"
+                  />
+                  {pincode.length >= 3 && (
+                    <span className={`absolute right-2.5 top-2.5 text-[10px] font-bold ${isHydPin ? 'text-emerald-700' : 'text-amber-700'}`}>
+                      {isHydPin ? '✓ Hyd Local' : '📍 Hyd Delivery Only'}
+                    </span>
+                  )}
+                </div>
+              </div>
+
               {(() => {
-                const shipping = totalPrice >= FREE_SHIP_ABOVE ? 0 : SHIPPING_CHARGE
-                const remaining = FREE_SHIP_ABOVE - totalPrice
+                const shipping = totalPrice >= FREE_SHIP_HYD ? 0 : SHIPPING_CHARGE
+                const remaining = FREE_SHIP_HYD - totalPrice
                 const grandTotal = totalPrice + shipping
 
                 return (
@@ -231,9 +267,9 @@ export default function CartPage() {
                     </div>
 
                     <div className="border-b border-border-gold/40 pb-3">
-                      {totalPrice >= FREE_SHIP_ABOVE ? (
+                      {shipping === 0 ? (
                         <div className="flex justify-between font-bold text-emerald-700">
-                          <span>🎉 Delivery Charge</span>
+                          <span>🎉 Hyderabad Delivery Charge</span>
                           <span>FREE</span>
                         </div>
                       ) : (
@@ -243,7 +279,7 @@ export default function CartPage() {
                             <span className="font-bold text-maroon">₹{SHIPPING_CHARGE}</span>
                           </div>
                           <p className="mt-1 text-xs text-gold font-semibold">
-                            Add ₹{remaining} more for FREE Shipping across India
+                            Add ₹{remaining} more for FREE Hyderabad Delivery!
                           </p>
                         </>
                       )}

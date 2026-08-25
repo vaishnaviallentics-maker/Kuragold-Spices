@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { MessageCircle } from 'lucide-react'
 import { ProductPurchasePanel } from '@/components/products/ProductPurchasePanel'
+import { ProductDetailedSpecs } from '@/components/products/ProductDetailedSpecs'
 import { LinkButton } from '@/components/ui/Button'
 import { getProductBySlug, getProducts } from '@/hooks/useProducts'
 import { CATEGORY_LABELS } from '@/lib/constants'
@@ -104,14 +105,38 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <p className="mt-2 font-accent text-lg italic text-gold">{product.tagline}</p>
           )}
 
-          <div className="my-6 h-px bg-border-gold" />
+          <div className="my-5 h-px bg-border-gold/50" />
 
-          {hasDescription && (
-            <p className="mb-8 max-w-lg text-sm leading-relaxed text-muted">{product.description}</p>
+          {product.description && (
+            <div className="mb-6 space-y-2">
+              <h2 className="font-heading text-xs font-bold uppercase tracking-wider text-maroon">
+                Product Description
+              </h2>
+              <p className="max-w-lg text-sm leading-relaxed text-ink/80">{product.description}</p>
+            </div>
           )}
+
+          {/* Product Highlights */}
+          <div className="mb-6 rounded-xl border border-gold/30 bg-cream/40 p-4 space-y-2 text-xs font-body text-ink">
+            <div className="flex items-center gap-2 font-bold text-maroon">
+              <span>✦ 100% Pure & Natural</span>
+              <span className="text-gold">•</span>
+              <span>✦ No Added Colors</span>
+            </div>
+            <div className="flex items-center gap-2 text-muted">
+              <span>✦ FSSAI Certified: 23626030003544</span>
+              <span>•</span>
+              <span>✦ Sourced from Premium Farms</span>
+            </div>
+          </div>
 
           <ProductPurchasePanel product={product} />
         </div>
+      </div>
+
+      {/* Comprehensive Original Product Specifications */}
+      <div className="mx-auto max-w-5xl">
+        <ProductDetailedSpecs slug={product.slug} fallbackDescription={product.description} />
       </div>
     </main>
   )

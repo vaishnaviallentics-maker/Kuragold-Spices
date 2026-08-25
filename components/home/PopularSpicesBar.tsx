@@ -5,7 +5,7 @@ const POPULAR_SPICES = [
   { name: 'Turmeric Powder', image: '/products/haldi.webp', href: '/products' },
   { name: 'Red Chilli Powder', image: '/products/chilli.webp', href: '/products' },
   { name: 'Coriander Powder', image: '/products/dhania.webp', href: '/products' },
-  { name: 'Garam Masala', image: '/products/masala.webp', href: '/products' },
+  { name: 'Garam Masala', image: '/products/Kura_Gold_Garam_Masala_Blend.png', href: '/products' },
 ]
 
 export function PopularSpicesBar() {
