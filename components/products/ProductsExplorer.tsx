@@ -35,7 +35,7 @@ export function ProductsExplorer({ initialProducts }: { initialProducts: Product
     { key: 'combo', label: CATEGORY_LABELS.combo },
   ]
 
-  // Dynamically extract all available pack sizes across active products with count
+  // Dynamically extract all available pack sizes across active products with count (excluding combo sizes)
   const availableSizes = useMemo(() => {
     const sizeMap = new Map<string, number>()
     initialProducts.forEach((p) => {
@@ -44,12 +44,14 @@ export function ProductsExplorer({ initialProducts }: { initialProducts: Product
 
       if (p.product_variants && p.product_variants.length > 0) {
         p.product_variants.forEach((v) => {
+          // Exclude combo pack sizes (e.g. 3x100g, 3x500g) from standard pack size dropdown
+          if (v.size_label.toLowerCase().includes('3x')) return
           sizeMap.set(v.size_label, (sizeMap.get(v.size_label) ?? 0) + 1)
         })
       }
     })
 
-    const customOrder = ['50g', '100g', '200g', '500g', '1kg', '3x100g', '3x500g']
+    const customOrder = ['50g', '100g', '200g', '500g', '1kg']
     return Array.from(sizeMap.entries()).sort((a, b) => {
       const idxA = customOrder.indexOf(a[0])
       const idxB = customOrder.indexOf(b[0])
