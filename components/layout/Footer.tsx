@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { MessageCircle } from 'lucide-react'
 import {
   CONTACT_EMAIL_GEN,
-  CONTACT_PHONE,
-  CONTACT_WA,
+  CONTACT_WA1,
+  CONTACT_WA2,
   FSSAI_LIC,
   HOURS,
   LOCATION,
@@ -108,8 +108,8 @@ export function Footer() {
         <div>
           <h3 className="mb-4 font-heading text-sm font-bold uppercase tracking-wide text-gold">Contact</h3>
           <ul className="flex flex-col gap-2.5 text-sm text-gold-muted">
-            <li>{CONTACT_WA}</li>
-            <li>{CONTACT_PHONE}</li>
+            <li>{CONTACT_WA1}</li>
+            <li>{CONTACT_WA2}</li>
             <li>{CONTACT_EMAIL_GEN}</li>
             <li>{LOCATION}</li>
             <li>{HOURS}</li>

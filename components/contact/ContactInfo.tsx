@@ -1,22 +1,13 @@
-import { Clock, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { Clock, Mail, MapPin, MessageCircle } from 'lucide-react'
 import {
   CONTACT_EMAIL_GEN,
   CONTACT_EMAIL_SUP,
-  CONTACT_PHONE,
-  CONTACT_WA,
+  CONTACT_WA1,
+  CONTACT_WA2,
   HOURS,
   LOCATION,
 } from '@/lib/constants'
 import { buildContactInquiryMessage } from '@/lib/whatsapp'
-
-const CARDS = [
-  { icon: MessageCircle, label: 'Call / WhatsApp', value: CONTACT_WA },
-  { icon: Phone, label: 'Phone', value: CONTACT_PHONE },
-  { icon: Mail, label: 'General Enquiries', value: CONTACT_EMAIL_GEN },
-  { icon: Mail, label: 'Support', value: CONTACT_EMAIL_SUP },
-  { icon: MapPin, label: 'Location', value: LOCATION },
-  { icon: Clock, label: 'Hours', value: HOURS },
-]
 
 const WA_URL = buildContactInquiryMessage()
 
@@ -24,18 +15,51 @@ export function ContactInfo() {
   return (
     <div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {CARDS.map((card) => (
-          <div
-            key={card.label}
-            className="flex items-start gap-3 rounded-xl border border-border-gold/60 bg-white p-4"
-          >
-            <card.icon className="mt-0.5 shrink-0 text-gold" size={20} aria-hidden="true" />
-            <div>
-              <p className="font-body text-xs font-bold uppercase tracking-wide text-muted">{card.label}</p>
-              <p className="text-sm font-bold text-ink">{card.value}</p>
-            </div>
+        {/* Call / WhatsApp Card with Both Numbers */}
+        <div className="flex items-start gap-3 rounded-xl border border-border-gold/60 bg-white p-4">
+          <MessageCircle className="mt-0.5 shrink-0 text-gold" size={20} aria-hidden="true" />
+          <div>
+            <p className="font-body text-xs font-bold uppercase tracking-wide text-muted">Call / WhatsApp</p>
+            <p className="text-sm font-bold text-ink">{CONTACT_WA1}</p>
+            <p className="text-sm font-bold text-ink">{CONTACT_WA2}</p>
           </div>
-        ))}
+        </div>
+
+        {/* General Enquiries */}
+        <div className="flex items-start gap-3 rounded-xl border border-border-gold/60 bg-white p-4">
+          <Mail className="mt-0.5 shrink-0 text-gold" size={20} aria-hidden="true" />
+          <div>
+            <p className="font-body text-xs font-bold uppercase tracking-wide text-muted">General Enquiries</p>
+            <p className="text-sm font-bold text-ink">{CONTACT_EMAIL_GEN}</p>
+          </div>
+        </div>
+
+        {/* Support */}
+        <div className="flex items-start gap-3 rounded-xl border border-border-gold/60 bg-white p-4">
+          <Mail className="mt-0.5 shrink-0 text-gold" size={20} aria-hidden="true" />
+          <div>
+            <p className="font-body text-xs font-bold uppercase tracking-wide text-muted">Support</p>
+            <p className="text-sm font-bold text-ink">{CONTACT_EMAIL_SUP}</p>
+          </div>
+        </div>
+
+        {/* Location */}
+        <div className="flex items-start gap-3 rounded-xl border border-border-gold/60 bg-white p-4">
+          <MapPin className="mt-0.5 shrink-0 text-gold" size={20} aria-hidden="true" />
+          <div>
+            <p className="font-body text-xs font-bold uppercase tracking-wide text-muted">Location</p>
+            <p className="text-sm font-bold text-ink">{LOCATION}</p>
+          </div>
+        </div>
+
+        {/* Hours */}
+        <div className="flex items-start gap-3 rounded-xl border border-border-gold/60 bg-white p-4 sm:col-span-2">
+          <Clock className="mt-0.5 shrink-0 text-gold" size={20} aria-hidden="true" />
+          <div>
+            <p className="font-body text-xs font-bold uppercase tracking-wide text-muted">Hours</p>
+            <p className="text-sm font-bold text-ink">{HOURS}</p>
+          </div>
+        </div>
       </div>
 
       <a
