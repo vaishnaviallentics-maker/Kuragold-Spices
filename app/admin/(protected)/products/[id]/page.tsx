@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import { updateProduct } from '@/app/admin/actions'
 import { AddVariantForm } from '@/components/admin/AddVariantForm'
+import { DeleteProductButton } from '@/components/admin/DeleteProductButton'
+import { ImageInputPicker } from '@/components/admin/ImageInputPicker'
 import { VariantRow } from '@/components/admin/VariantRow'
 import { createClient } from '@/lib/supabase/server'
 import type { ProductVariant } from '@/types'
@@ -69,13 +71,16 @@ export default async function EditProductPage({ params }: { params: { id: string
 
         <div>
           <label className={labelClass}>Description</label>
-          <textarea name="description" defaultValue={product.description ?? ''} rows={4} className={inputClass} />
+          <textarea
+            name="description"
+            defaultValue={(product.description ?? '').includes('To be confirmed') ? '' : (product.description ?? '')}
+            placeholder="Enter product description..."
+            rows={4}
+            className={inputClass}
+          />
         </div>
 
-        <div>
-          <label className={labelClass}>Image URL</label>
-          <input name="image_url" defaultValue={product.image_url ?? ''} className={inputClass} />
-        </div>
+        <ImageInputPicker defaultValue={product.image_url ?? ''} />
 
         <div>
           <label className={labelClass}>Sort Order (Lower = First)</label>
@@ -99,12 +104,16 @@ export default async function EditProductPage({ params }: { params: { id: string
           </label>
         </div>
 
-        <button
-          type="submit"
-          className="mt-2 self-start rounded-full bg-maroon px-8 py-3 font-body text-xs font-bold uppercase tracking-wide text-white transition-colors hover:bg-maroon-dark shadow-md"
-        >
-          Save Changes
-        </button>
+        <div className="mt-4 flex items-center gap-4 pt-2 border-t border-border-gold/40">
+          <button
+            type="submit"
+            className="rounded-full bg-maroon px-8 py-3 font-body text-xs font-bold uppercase tracking-wide text-white transition-colors hover:bg-maroon-dark shadow-md"
+          >
+            Save Changes
+          </button>
+
+          <DeleteProductButton id={product.id} name={product.name} slug={product.slug} variant="button" />
+        </div>
       </form>
 
       <div className="max-w-2xl rounded-xl border border-border-gold/60 bg-white p-6">

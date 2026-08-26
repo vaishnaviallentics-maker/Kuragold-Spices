@@ -15,7 +15,7 @@ export async function createProduct() {
   const slug = `new-product-${Date.now()}`
   const { data, error } = await supabase
     .from('products')
-    .insert({ name: 'New Product', slug, category: 'pure_grounded', status: 'active', is_active: false })
+    .insert({ name: 'New Product', slug, category: 'pure_grounded', status: 'active', is_active: false, description: '' })
     .select('id')
     .single()
 
@@ -48,9 +48,25 @@ export async function updateProduct(id: string, oldSlug: string, formData: FormD
 
   revalidatePath('/admin/products')
   revalidatePath(`/admin/products/${id}`)
+  revalidatePath('/products')
   revalidatePath(`/products/${oldSlug}`)
   revalidatePath('/')
-  if (newSlug !== oldSlug) revalidatePath(`/products/${newSlug}`)
+  redirect('/admin/products?updated=true')
+}
+
+export async function deleteProduct(id: string, slug?: string) {
+  const supabase = createClient()
+  // Delete variants first if any
+  await supabase.from('product_variants').delete().eq('product_id', id)
+  // Delete main product
+  await supabase.from('products').delete().eq('id', id)
+
+  revalidatePath('/admin/products')
+  revalidatePath('/products')
+  if (slug) revalidatePath(`/products/${slug}`)
+  revalidatePath('/')
+
+  redirect('/admin/products?deleted=true')
 }
 
 export async function addVariant(productId: string, slug: string, sizeLabel: string, price: number) {

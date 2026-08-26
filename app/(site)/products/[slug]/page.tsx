@@ -9,7 +9,7 @@ import { getProductBySlug, getProducts } from '@/hooks/useProducts'
 import { CATEGORY_LABELS } from '@/lib/constants'
 import { buildComingSoonNotifyMessage } from '@/lib/whatsapp'
 
-const PLACEHOLDER_DESCRIPTION = '[To be confirmed by Sir]'
+const PLACEHOLDER_DESCRIPTION = ''
 
 interface ProductPageProps {
   params: { slug: string }

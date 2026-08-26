@@ -43,6 +43,7 @@ const NAV_LINKS: NavItem[] = [
     ],
   },
   { label: 'Quality', href: '/quality' },
+  { label: 'Recipes', href: '/recipes' },
   { label: 'Bulk Inquiry', href: '/bulk-inquiry' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact Us', href: '/contact' },
@@ -91,7 +92,7 @@ export function Navbar() {
   }, [pathname])
 
   return (
-    <header className="sticky top-0 z-nav border-b border-gold/20 bg-maroon-dark shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
+    <header className="relative z-nav border-b border-gold/20 bg-maroon-dark shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
         {/* Brand Logo */}
         <Link href="/" className="flex shrink-0 items-center" aria-label={`${SITE_NAME} — ${TAGLINE}`}>

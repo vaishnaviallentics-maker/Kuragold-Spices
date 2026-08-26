@@ -11,8 +11,7 @@ export default async function AdminClaimsPage() {
       <h1 className="font-heading text-2xl font-bold text-maroon sm:text-3xl">Claims Management</h1>
 
       <p className="max-w-2xl rounded-lg border border-gold/30 bg-gold/10 px-4 py-3 text-sm text-ink">
-        Only enable a claim after it has been confirmed by Sir. Turning ON a badge will immediately
-        show it on the public website.
+        Manage quality trust badges. Turning ON a badge will immediately show it on the public website.
       </p>
 
       <div className="overflow-x-auto rounded-xl border border-border-gold/60 bg-white">

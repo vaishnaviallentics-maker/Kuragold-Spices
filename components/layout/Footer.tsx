@@ -18,6 +18,7 @@ const NAV_LINKS = [
   { label: 'About Us', href: '/about' },
   { label: 'Products', href: '/products' },
   { label: 'Quality', href: '/quality' },
+  { label: 'Careers', href: '/careers' },
   { label: 'Contact Us', href: '/contact' },
 ]
 
@@ -29,12 +30,19 @@ const PRODUCT_LINKS = [
   { label: 'Combo Pack', href: '/products/combo-pack' },
 ]
 
+const POLICY_LINKS = [
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Shipping Policy', href: '/shipping-policy' },
+  { label: 'Cancellations', href: '/cancellation-policy' },
+  { label: 'Terms & Conditions', href: '/terms-and-conditions' },
+]
+
 const ORDER_URL = buildGeneralInquiryMessage()
 
 export function Footer() {
   return (
     <footer className="bg-maroon-dark px-6 pb-7 pt-14 sm:px-10 sm:pt-16">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.1fr_1.1fr]">
         <div>
           <Image
             src="/logo.webp"
@@ -75,6 +83,19 @@ export function Footer() {
           <h3 className="mb-4 font-heading text-sm font-bold uppercase tracking-wide text-gold">Products</h3>
           <ul className="flex flex-col gap-2.5">
             {PRODUCT_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="text-sm text-gold-muted transition-colors hover:text-gold-light">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="mb-4 font-heading text-sm font-bold uppercase tracking-wide text-gold">Policies</h3>
+          <ul className="flex flex-col gap-2.5">
+            {POLICY_LINKS.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="text-sm text-gold-muted transition-colors hover:text-gold-light">
                   {link.label}

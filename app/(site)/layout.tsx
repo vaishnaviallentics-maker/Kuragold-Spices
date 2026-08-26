@@ -11,8 +11,10 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <AuthProvider>
       <CartProvider>
         <WishlistProvider>
-          <AnnouncementBar />
-          <Navbar />
+          <div className="sticky top-0 z-nav">
+            <AnnouncementBar />
+            <Navbar />
+          </div>
           {children}
           <Footer />
           <WhatsAppFloat />

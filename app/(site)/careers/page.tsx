@@ -1,178 +1,165 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Briefcase, MapPin, Sparkles, CheckCircle2, ArrowRight, MessageCircle } from 'lucide-react'
-import { LinkButton } from '@/components/ui/Button'
+import { Briefcase, Heart, ShieldCheck, Sparkles, Mail, MessageCircle, Users, Award, FileText, ChevronRight } from 'lucide-react'
 import { SectionLabel } from '@/components/ui/SectionLabel'
-import { buildGeneralInquiryMessage } from '@/lib/whatsapp'
+import { CONTACT_EMAIL_GEN, CONTACT_WA, LOCATION, SITE_NAME } from '@/lib/constants'
+import { buildGeneralMessage } from '@/lib/whatsapp'
 
 export const metadata: Metadata = {
-  title: 'Careers',
-  description: 'Join Kura Gold Spices (JK Enterprises) — build your career with Hyderabad’s premier spice brand.',
+  title: 'Careers & Opportunities',
+  description:
+    'Learn about careers and work culture at Kura Gold Spices. Discover our values, growth opportunities, and submit your resume for future openings.',
 }
 
-const OPEN_POSITIONS = [
-  {
-    id: 1,
-    title: 'Quality Control & Food Safety Analyst',
-    department: 'Quality Assurance',
-    location: 'Hyderabad, Telangana',
-    type: 'Full-Time',
-    description: 'Responsible for raw spice inspection, moisture testing, aroma retention analysis, and FSSAI compliance auditing.',
-  },
-  {
-    id: 2,
-    title: 'Territory Sales Manager — Spices & Retail',
-    department: 'Sales & Distribution',
-    location: 'Telangana & Andhra Pradesh',
-    type: 'Full-Time',
-    description: 'Drive retail distribution, manage super-stockists and grocery store partnerships for Kura Gold pure spice range.',
-  },
-  {
-    id: 3,
-    title: 'E-Commerce & Digital Growth Specialist',
-    department: 'Marketing',
-    location: 'Hyderabad, Telangana',
-    type: 'Full-Time / Hybrid',
-    description: 'Manage online D2C store performance, customer acquisition, social media content, and brand campaigns.',
-  },
-  {
-    id: 4,
-    title: 'Spice Milling & Production Supervisor',
-    department: 'Operations',
-    location: 'Hyderabad, Telangana',
-    type: 'Full-Time',
-    description: 'Oversee cold-grinding production lines, hygienic pouch packaging, and inventory batch management.',
-  },
-]
-
 export default function CareersPage() {
+  const whatsappHrMessage = buildGeneralMessage(
+    'Hello Kura Gold HR Team, I am interested in future career opportunities at Kura Gold Spices. I would like to submit my profile/resume.'
+  )
+
   return (
-    <main className="bg-ivory px-6 py-12 sm:px-10 lg:py-16">
-      <div className="mx-auto max-w-6xl space-y-12">
-        {/* Header Hero */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <SectionLabel className="justify-center">JOIN THE KURA GOLD TEAM</SectionLabel>
-          <h1 className="font-heading text-3xl sm:text-5xl font-bold text-maroon">
-            Build Your Career in Spice Excellence
+    <main className="bg-ivory px-6 py-8 sm:px-10 lg:py-12">
+      <div className="mx-auto max-w-5xl space-y-10">
+        {/* Breadcrumb Navigation */}
+        <nav className="flex items-center gap-2 font-body text-xs text-muted">
+          <Link href="/" className="hover:text-maroon transition-colors">
+            Home
+          </Link>
+          <ChevronRight size={14} className="text-border-gold" />
+          <span className="font-bold text-maroon">Careers</span>
+        </nav>
+
+        {/* Hero Section Typography */}
+        <div className="text-center max-w-3xl mx-auto space-y-3 py-2">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-widest text-maroon shadow-2xs">
+            <Sparkles size={14} className="text-gold" />
+            CAREERS AT KURA GOLD
+          </span>
+          <h1 className="font-heading text-3xl sm:text-5xl font-bold leading-tight text-maroon">
+            Build Your Career <br />
+            <span className="italic font-accent text-gold-dark">Where Passion Meets Purity</span>
           </h1>
-          <p className="font-body text-sm sm:text-base text-muted leading-relaxed">
-            At Kura Gold Spices (JK Enterprises), we are passionate about purity, innovation, and tradition. Join our growing team in Hyderabad and help us bring authentic Indian flavours to every kitchen.
+          <p className="font-body text-xs sm:text-sm text-muted leading-relaxed max-w-2xl mx-auto">
+            At {SITE_NAME}, we are on a mission to deliver 100% pure, unadulterated spices to every home across India. 
+            Explore our work culture, brand values, and submit your profile for future opportunities.
           </p>
         </div>
 
-        {/* Culture Highlights */}
+        {/* Hero Banner Image */}
+        <div className="relative overflow-hidden rounded-3xl border border-gold/30 bg-cream shadow-md">
+          <div className="relative h-60 sm:h-80 md:h-96 w-full">
+            <Image
+              src="/careers/careers_hero_banner.png"
+              alt="Kura Gold Spices Culinary Workspace"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Culture & Values Grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          <div className="rounded-3xl border border-border-gold/60 bg-white p-6 shadow-sm">
-            <div className="h-10 w-10 rounded-2xl bg-cream flex items-center justify-center text-maroon mb-4">
-              🌿
+          <div className="rounded-3xl border border-gold/30 bg-white p-7 shadow-xs space-y-3">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gold/15 text-maroon">
+              <ShieldCheck size={24} />
             </div>
-            <h3 className="font-heading text-lg font-bold text-maroon">Purity &amp; Quality First</h3>
-            <p className="mt-2 text-xs text-muted leading-relaxed">
-              We never compromise on quality. Every team member takes pride in maintaining 100% unadulterated standards.
+            <h3 className="font-heading text-lg font-bold text-maroon">Uncompromising Purity</h3>
+            <p className="text-xs text-muted leading-relaxed">
+              Every process at Kura Gold is driven by a commitment to zero adulteration and authentic spice heritage.
             </p>
           </div>
 
-          <div className="rounded-3xl border border-border-gold/60 bg-white p-6 shadow-sm">
-            <div className="h-10 w-10 rounded-2xl bg-cream flex items-center justify-center text-maroon mb-4">
-              🚀
+          <div className="rounded-3xl border border-gold/30 bg-white p-7 shadow-xs space-y-3">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gold/15 text-maroon">
+              <Users size={24} />
             </div>
-            <h3 className="font-heading text-lg font-bold text-maroon">Fast-Growing Brand</h3>
-            <p className="mt-2 text-xs text-muted leading-relaxed">
-              Experience fast career growth in a rapidly expanding FMCG spice brand backed by strong heritage.
+            <h3 className="font-heading text-lg font-bold text-maroon">Collaborative Environment</h3>
+            <p className="text-xs text-muted leading-relaxed">
+              We foster an energetic, supportive workplace where initiative is celebrated and ideas are heard.
             </p>
           </div>
 
-          <div className="rounded-3xl border border-border-gold/60 bg-white p-6 shadow-sm">
-            <div className="h-10 w-10 rounded-2xl bg-cream flex items-center justify-center text-maroon mb-4">
-              🤝
+          <div className="rounded-3xl border border-gold/30 bg-white p-7 shadow-xs space-y-3">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gold/15 text-maroon">
+              <Award size={24} />
             </div>
-            <h3 className="font-heading text-lg font-bold text-maroon">Inclusive Work Culture</h3>
-            <p className="mt-2 text-xs text-muted leading-relaxed">
-              Collaborative, supportive environment where every idea is valued and individual achievement is celebrated.
+            <h3 className="font-heading text-lg font-bold text-maroon">Growth & Innovation</h3>
+            <p className="text-xs text-muted leading-relaxed">
+              As our distribution expands, team members gain opportunities across supply chain, sales, and food tech.
             </p>
           </div>
         </div>
 
-        {/* Open Positions List */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-border-gold/40 pb-4">
+        {/* Current Job Openings Section (No Openings Currently) */}
+        <div className="rounded-3xl border border-gold/40 bg-white p-8 sm:p-12 shadow-sm space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-border-gold/40 pb-6">
             <div>
-              <h2 className="font-heading text-2xl font-bold text-maroon">Open Positions</h2>
-              <p className="text-xs text-muted">Explore current opportunities across sales, quality, and operations</p>
+              <span className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-amber-900 border border-amber-200 mb-2">
+                <Briefcase size={14} className="text-gold-dark" />
+                Current Hiring Status
+              </span>
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-maroon">
+                Current Job Openings
+              </h2>
             </div>
-            <span className="rounded-full bg-maroon px-3 py-1 font-body text-xs font-bold text-gold-light">
-              {OPEN_POSITIONS.length} Active Roles
+            <span className="inline-block rounded-full bg-cream/80 px-4 py-1.5 font-body text-xs font-bold text-maroon border border-border-gold/60 self-start sm:self-auto">
+              0 Active Openings
             </span>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {OPEN_POSITIONS.map((job) => (
-              <div
-                key={job.id}
-                className="flex flex-col justify-between rounded-3xl border border-border-gold/60 bg-white p-6 shadow-xs transition-all hover:border-gold hover:shadow-md"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="rounded-full bg-cream px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wider text-maroon">
-                      {job.department}
-                    </span>
-                    <span className="font-body text-xs font-semibold text-gold">
-                      {job.type}
-                    </span>
-                  </div>
-
-                  <h3 className="mt-4 font-heading text-lg font-bold text-maroon">{job.title}</h3>
-
-                  <div className="mt-2 flex items-center gap-1.5 text-xs text-muted">
-                    <MapPin size={14} className="text-gold" />
-                    <span>{job.location}</span>
-                  </div>
-
-                  <p className="mt-3 text-xs text-muted leading-relaxed">{job.description}</p>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-border-gold/30">
-                  <a
-                    href={`https://wa.me/919885820352?text=Hello%20Kura%20Gold%20Team,%20I%20am%20interested%20in%20applying%20for%20the%20role%20of%20${encodeURIComponent(
-                      job.title
-                    )}.`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-maroon py-2.5 font-body text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-maroon-dark shadow-xs"
-                  >
-                    <span>Apply Now</span>
-                    <ArrowRight size={14} />
-                  </a>
-                </div>
-              </div>
-            ))}
+          {/* No Openings Notice Banner */}
+          <div className="rounded-2xl border border-border-gold/60 bg-cream/30 p-8 text-center space-y-4 max-w-2xl mx-auto">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-cream text-gold-dark border border-gold/30">
+              <FileText size={28} />
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-heading text-xl font-bold text-maroon">
+                No Active Job Openings Currently
+              </h3>
+              <p className="font-body text-xs sm:text-sm text-muted leading-relaxed">
+                Thank you for your interest in joining {SITE_NAME}! We do not have any open positions at the moment. 
+                However, our team is continuously growing across sales, quality assurance, logistics, and digital marketing.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* General Application Banner */}
-        <div className="rounded-3xl border border-border-gold/60 bg-white p-8 sm:p-10 shadow-sm text-center">
-          <h3 className="font-heading text-xl sm:text-2xl font-bold text-maroon">Don't See a Matching Role?</h3>
-          <p className="mt-2 text-xs sm:text-sm text-muted max-w-xl mx-auto leading-relaxed">
-            We are always looking for passionate talent! Send your resume to our HR team and we will reach out when a suitable position opens up.
-          </p>
+        {/* Future Talent Pool / Send Resume Section */}
+        <div className="rounded-3xl border border-gold/40 bg-gradient-to-r from-maroon-dark via-maroon to-maroon-dark p-8 sm:p-12 text-center text-ivory shadow-xl space-y-6">
+          <Sparkles className="mx-auto h-8 w-8 text-gold-light" />
+          <div className="space-y-2 max-w-xl mx-auto">
+            <h2 className="font-heading text-2xl sm:text-3xl font-bold">
+              Submit Your Resume for Future Roles
+            </h2>
+            <p className="text-xs sm:text-sm text-gold-muted leading-relaxed">
+              Would you like to be considered for future openings? Send your resume and cover letter to our recruitment team, and we will reach out as soon as a matching position opens.
+            </p>
+          </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <a
-              href="mailto:careers@kuragoldspices.com"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-maroon px-6 py-3 font-body text-xs font-bold uppercase tracking-wider text-white hover:bg-maroon-dark shadow-sm transition-transform hover:scale-105"
+              href={`mailto:${CONTACT_EMAIL_GEN}?subject=Future%20Career%20Inquiry%20-%20Kura%20Gold%20Spices`}
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-gold px-7 py-3 font-body text-xs font-bold uppercase tracking-widest text-maroon-dark hover:bg-gold-light shadow-md transition-transform hover:scale-105"
             >
-              ✉ Email Resume to HR
+              <Mail size={16} />
+              Email Resume
             </a>
+
             <a
-              href={buildGeneralInquiryMessage()}
+              href={whatsappHrMessage}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-maroon px-6 py-3 font-body text-xs font-bold uppercase tracking-wider text-maroon hover:bg-cream shadow-2xs"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-gold-light/40 bg-white/10 px-7 py-3 font-body text-xs font-bold uppercase tracking-widest text-ivory hover:bg-white/20 shadow-md backdrop-blur-xs transition-transform hover:scale-105"
             >
               <MessageCircle size={16} />
-              Contact Careers HR on WhatsApp
+              HR Inquiry via WhatsApp
             </a>
           </div>
+
+          <p className="text-[11px] text-gold-muted">
+            📍 Office Location: {LOCATION}
+          </p>
         </div>
       </div>
     </main>

@@ -2,11 +2,16 @@ import Link from 'next/link'
 import { Plus } from 'lucide-react'
 import { createProduct, toggleProductActive } from '@/app/admin/actions'
 import { ToggleSwitch } from '@/components/admin/ToggleSwitch'
+import { DeleteProductButton } from '@/components/admin/DeleteProductButton'
 import { createClient } from '@/lib/supabase/server'
 import { cn } from '@/lib/utils'
 import type { Product } from '@/types'
 
-export default async function AdminProductsPage() {
+export default async function AdminProductsPage({
+  searchParams,
+}: {
+  searchParams: { updated?: string; deleted?: string }
+}) {
   const supabase = createClient()
   const { data: products } = await supabase
     .from('products')
@@ -17,6 +22,18 @@ export default async function AdminProductsPage() {
 
   return (
     <div className="flex flex-col gap-6">
+      {searchParams?.updated === 'true' && (
+        <div className="rounded-xl border border-emerald-300 bg-emerald-50 p-4 text-xs font-bold text-emerald-800 flex items-center justify-between shadow-2xs">
+          <span>✅ Product updated and saved successfully! All live store pages updated.</span>
+        </div>
+      )}
+
+      {searchParams?.deleted === 'true' && (
+        <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-xs font-bold text-amber-900 flex items-center justify-between shadow-2xs">
+          <span>🗑️ Product deleted successfully.</span>
+        </div>
+      )}
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-heading text-2xl font-bold text-maroon sm:text-3xl">Products</h1>
@@ -73,9 +90,13 @@ export default async function AdminProductsPage() {
                   />
                 </td>
                 <td className="px-4 py-3">
-                  <Link href={`/admin/products/${product.id}`} className="font-bold text-maroon hover:underline">
-                    Edit
-                  </Link>
+                  <div className="flex items-center gap-3">
+                    <Link href={`/admin/products/${product.id}`} className="font-bold text-maroon hover:underline">
+                      Edit
+                    </Link>
+                    <span className="text-muted">|</span>
+                    <DeleteProductButton id={product.id} name={product.name} slug={product.slug} />
+                  </div>
                 </td>
               </tr>
             ))}
