@@ -169,3 +169,18 @@ export async function deleteBlog(id: string) {
   revalidatePath('/admin/blog')
   redirect('/admin/blog')
 }
+
+export async function updateSiteContentAction(formData: FormData) {
+  const { updateContentKey } = await import('@/lib/siteContent')
+
+  const entries = Array.from(formData.entries())
+  for (const [key, value] of entries) {
+    if (typeof value === 'string' && !key.startsWith('$ACTION_')) {
+      await updateContentKey(key, value)
+    }
+  }
+
+  revalidatePath('/', 'layout')
+  revalidatePath('/admin/content')
+  redirect('/admin/content?saved=true')
+}

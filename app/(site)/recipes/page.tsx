@@ -260,24 +260,35 @@ export default function RecipesPage() {
             </a>
           </div>
         </div>
-      </div>
-
-      {/* Interactive Full Recipe Modal Drawer */}
+           {/* Interactive Full Recipe Modal Drawer */}
       {activeModalRecipe && (
-        <div className="fixed inset-0 z-modal flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 sm:p-6 overflow-y-auto">
-          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-gold/30 bg-white p-6 sm:p-10 shadow-2xl space-y-6 font-body text-ink">
-            {/* Close Button */}
-            <button
-              type="button"
-              onClick={() => setActiveModalRecipe(null)}
-              className="absolute top-5 right-5 rounded-full bg-cream p-2 text-maroon hover:bg-maroon hover:text-white transition-colors"
-            >
-              <X size={20} />
-            </button>
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto"
+          onClick={() => setActiveModalRecipe(null)}
+        >
+          <div
+            className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl border border-gold/40 bg-white p-6 sm:p-10 shadow-2xl space-y-6 font-body text-ink my-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Sticky Modal Top Header Bar with Close Button */}
+            <div className="sticky -top-6 sm:-top-10 z-20 -mx-6 sm:-mx-10 -mt-6 sm:-mt-10 mb-4 bg-white/95 backdrop-blur-md border-b border-border-gold/30 px-6 sm:px-10 py-3.5 flex items-center justify-between">
+              <span className="font-heading text-xs font-bold uppercase tracking-widest text-maroon flex items-center gap-2">
+                <ChefHat size={16} className="text-gold" />
+                Recipe Masterclass
+              </span>
+              <button
+                type="button"
+                onClick={() => setActiveModalRecipe(null)}
+                className="inline-flex items-center gap-1.5 rounded-full bg-maroon/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-maroon hover:bg-maroon hover:text-white transition-colors shadow-2xs"
+              >
+                <X size={16} />
+                <span>Close</span>
+              </button>
+            </div>
 
-            {/* Modal Header */}
+            {/* Modal Content Header */}
             <div className="flex flex-col sm:flex-row gap-6 items-start">
-              <div className="relative h-44 w-44 shrink-0 rounded-2xl bg-cream overflow-hidden mx-auto sm:mx-0">
+              <div className="relative h-44 w-44 shrink-0 rounded-2xl bg-cream overflow-hidden mx-auto sm:mx-0 border border-border-gold/40">
                 <Image
                   src={activeModalRecipe.image}
                   alt={activeModalRecipe.title}
@@ -351,18 +362,29 @@ export default function RecipesPage() {
                 <p className="text-[11px] text-muted">Order 100% pure Kura Gold Spices directly on WhatsApp.</p>
               </div>
 
-              <a
-                href={buildGeneralMessage(`Hello! I want to order Kura Gold Spices for preparing "${activeModalRecipe.title}".`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-maroon px-8 py-3 font-body text-xs font-bold uppercase tracking-wider text-white hover:bg-maroon-dark shadow-md transition-all duration-200"
-              >
-                ORDER NOW
-              </a>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setActiveModalRecipe(null)}
+                  className="rounded-full border border-border-gold bg-cream/40 px-5 py-2.5 font-body text-xs font-bold uppercase tracking-wider text-muted hover:bg-cream hover:text-ink transition-colors"
+                >
+                  Close Recipe
+                </button>
+
+                <a
+                  href={buildGeneralMessage(`Hello! I want to order Kura Gold Spices for preparing "${activeModalRecipe.title}".`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-maroon px-8 py-2.5 font-body text-xs font-bold uppercase tracking-wider text-white hover:bg-maroon-dark shadow-md transition-all duration-200"
+                >
+                  ORDER NOW
+                </a>
+              </div>
             </div>
           </div>
         </div>
       )}
+      </div>
     </main>
   )
 }
