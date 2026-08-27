@@ -49,7 +49,7 @@ export function Footer() {
             alt={SITE_NAME}
             width={1024}
             height={559}
-            className="mb-4 h-16 w-auto object-contain"
+            className="mb-5 h-20 w-auto object-contain sm:h-24 lg:h-[96px] transition-transform duration-300 hover:scale-105"
           />
           <p className="mb-2 font-accent text-lg italic text-gold-light">{TAGLINE}</p>
           <p className="mb-6 max-w-sm text-sm leading-relaxed text-gold-muted">

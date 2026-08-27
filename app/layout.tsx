@@ -33,6 +33,16 @@ export const metadata: Metadata = {
   },
   description: `${SITE_NAME} — pure and natural Indian spices from Hyderabad, Telangana. ${TAGLINE}. Order on WhatsApp: ${CONTACT_WA}.`,
   keywords: ['kura gold spices', 'pure indian spices', 'hyderabad spices', 'natural spices', 'jk enterprises'],
+  icons: {
+    icon: [
+      { url: '/favicon.png', type: 'image/png', sizes: '32x32' },
+      { url: '/icon.png', type: 'image/png', sizes: '64x64' },
+      { url: '/logo.png', type: 'image/png', sizes: '192x192' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    shortcut: ['/icon.png'],
+    apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
+  },
   openGraph: {
     siteName: SITE_NAME,
     title: `${SITE_NAME} | Pure & Natural Indian Spices`,

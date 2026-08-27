@@ -95,13 +95,13 @@ export function Navbar() {
     <header className="relative z-nav border-b border-gold/20 bg-maroon-dark shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
         {/* Brand Logo */}
-        <Link href="/" className="flex shrink-0 items-center" aria-label={`${SITE_NAME} — ${TAGLINE}`}>
+        <Link href="/" className="flex shrink-0 items-center py-1" aria-label={`${SITE_NAME} — ${TAGLINE}`}>
           <Image
             src="/logo.webp"
             alt={`${SITE_NAME} — ${TAGLINE}`}
             width={1024}
             height={559}
-            className="h-12 w-auto object-contain sm:h-14"
+            className="h-16 w-auto object-contain sm:h-20 lg:h-[84px] transition-transform duration-300 hover:scale-105"
             priority
           />
         </Link>

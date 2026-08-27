@@ -15,11 +15,11 @@ export function TrustBar({ claims }: { claims: SiteClaim[] }) {
   const hasCerts = confirmedCerts.length > 0
 
   return (
-    <section className="border-t-[3px] border-gold bg-cream px-6 py-6">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-12">
+    <section className="border-t-[3px] border-gold bg-cream py-4 sm:py-6 overflow-hidden">
+      <div className="mx-auto flex max-w-7xl items-center overflow-x-auto no-scrollbar gap-6 px-4 whitespace-nowrap sm:flex-wrap sm:justify-center sm:gap-12 sm:px-6 sm:whitespace-normal">
         {confirmedCerts.map((item, i) => (
-          <div key={item.key} className="flex items-center gap-3">
-            {i > 0 && <span className="text-gold" aria-hidden="true">✦</span>}
+          <div key={item.key} className="flex shrink-0 items-center gap-3">
+            {i > 0 && <span className="text-gold shrink-0" aria-hidden="true">✦</span>}
             <span className="flex items-center gap-2">
               <Image
                 src={item.icon}
@@ -28,16 +28,17 @@ export function TrustBar({ claims }: { claims: SiteClaim[] }) {
                 height={item.height}
                 className={`${item.className} object-contain`}
               />
-              <span className="font-body text-xs font-bold uppercase tracking-wide text-ink">{item.label}</span>
+              <span className="font-body text-xs font-bold uppercase tracking-wide text-ink shrink-0">{item.label}</span>
             </span>
           </div>
         ))}
 
-        {hasCerts && <span className="text-gold" aria-hidden="true">✦</span>}
-
-        <span className="font-body text-xs font-bold uppercase tracking-wide text-ink">
-          🏢 JK Enterprises · Hyderabad{!hasCerts && ', Telangana · Open 24 Hours'}
-        </span>
+        <div className="flex shrink-0 items-center gap-3">
+          {hasCerts && <span className="text-gold shrink-0" aria-hidden="true">✦</span>}
+          <span className="font-body text-xs font-bold uppercase tracking-wide text-ink shrink-0">
+            🏢 JK Enterprises · Hyderabad{!hasCerts && ', Telangana · Open 24 Hours'}
+          </span>
+        </div>
       </div>
     </section>
   )
