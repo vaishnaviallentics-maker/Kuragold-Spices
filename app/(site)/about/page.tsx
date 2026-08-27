@@ -436,7 +436,7 @@ export default async function AboutPage() {
           <div className="mt-5 flex flex-wrap justify-center gap-3">
             <Link
               href="/products"
-              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#E5B842] px-6 py-2.5 text-xs font-bold text-maroon shadow-md transition-all duration-300 hover:bg-[#F3C856] hover:scale-105"
+              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#E5B842] px-6 py-2.5 text-xs font-bold text-maroon shadow-md transition-all duration-300 hover:bg-[#F3C856]"
             >
               <ShoppingBag className="h-4 w-4 text-maroon" /> Shop Spices Now
             </Link>
@@ -445,7 +445,7 @@ export default async function AboutPage() {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-6 py-2.5 text-xs font-bold text-white shadow-md transition-all duration-300 hover:bg-emerald-700 hover:scale-105"
+              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 px-6 py-2.5 text-xs font-bold text-white shadow-md transition-all duration-300 hover:bg-emerald-700"
             >
               <MessageCircle className="h-4 w-4 text-white" /> Order via WhatsApp
             </a>

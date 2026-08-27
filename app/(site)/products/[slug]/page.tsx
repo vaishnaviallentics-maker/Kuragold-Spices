@@ -67,7 +67,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               href={buildComingSoonNotifyMessage(product.name)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border-2 border-maroon bg-cream/60 px-8 py-3.5 font-body text-xs font-bold uppercase tracking-widest text-maroon hover:bg-maroon hover:text-ivory shadow-md transition-transform hover:scale-105"
+              className="inline-flex items-center justify-center rounded-full border-2 border-maroon bg-cream/60 px-8 py-3.5 font-body text-xs font-bold uppercase tracking-widest text-maroon hover:bg-maroon hover:text-ivory shadow-md transition-transform"
             >
               NOTIFY ME
             </a>

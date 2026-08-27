@@ -140,7 +140,7 @@ export default function CareersPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <a
               href={`mailto:${CONTACT_EMAIL_GEN}?subject=Future%20Career%20Inquiry%20-%20Kura%20Gold%20Spices`}
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-gold px-7 py-3 font-body text-xs font-bold uppercase tracking-widest text-maroon-dark hover:bg-gold-light shadow-md transition-transform hover:scale-105"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-gold px-7 py-3 font-body text-xs font-bold uppercase tracking-widest text-maroon-dark hover:bg-gold-light shadow-md transition-transform"
             >
               <Mail size={16} />
               Email Resume
@@ -150,7 +150,7 @@ export default function CareersPage() {
               href={whatsappHrMessage}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-gold-light/40 bg-white/10 px-7 py-3 font-body text-xs font-bold uppercase tracking-widest text-ivory hover:bg-white/20 shadow-md backdrop-blur-xs transition-transform hover:scale-105"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-gold-light/40 bg-white/10 px-7 py-3 font-body text-xs font-bold uppercase tracking-widest text-ivory hover:bg-white/20 shadow-md backdrop-blur-xs transition-transform"
             >
               <MessageCircle size={16} />
               HR Inquiry via WhatsApp

@@ -73,7 +73,7 @@ export default function BulkInquiryPage() {
             <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/login?redirect=/bulk-inquiry"
-                className="inline-flex items-center justify-center rounded-full bg-maroon px-8 py-3.5 font-body text-xs font-bold uppercase tracking-widest text-white hover:bg-maroon-dark shadow-md transition-transform hover:scale-105"
+                className="inline-flex items-center justify-center rounded-full bg-maroon px-8 py-3.5 font-body text-xs font-bold uppercase tracking-widest text-white hover:bg-maroon-dark shadow-md transition-transform"
               >
                 Sign In / Register to Access Bulk Portal
               </Link>

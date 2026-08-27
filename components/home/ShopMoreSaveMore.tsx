@@ -35,7 +35,7 @@ export function ShopMoreSaveMore() {
             <Link
               key={combo.title}
               href={combo.link}
-              className="group flex flex-col justify-between rounded-2xl border border-gold/40 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-lg"
+              className="group flex flex-col justify-between rounded-2xl border border-gold/40 bg-white p-6 shadow-sm transition-all duration-300 hover:border-gold hover:shadow-lg"
             >
               <div>
                 <span className="rounded-full bg-cream px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wider text-maroon">

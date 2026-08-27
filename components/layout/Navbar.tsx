@@ -101,7 +101,7 @@ export function Navbar() {
             alt={`${SITE_NAME} — ${TAGLINE}`}
             width={1024}
             height={559}
-            className="h-16 w-auto object-contain sm:h-20 lg:h-[84px] transition-transform duration-300 hover:scale-105"
+            className="h-16 w-auto object-contain sm:h-20 lg:h-[84px] transition-transform duration-300"
             priority
           />
         </Link>

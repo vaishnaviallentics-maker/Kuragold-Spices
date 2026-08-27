@@ -61,7 +61,7 @@ export default function AccountPage() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/bulk-inquiry"
-            className="group flex flex-col justify-between rounded-3xl border border-gold/50 bg-cream/30 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gold hover:shadow-lg"
+            className="group flex flex-col justify-between rounded-3xl border border-gold/50 bg-cream/30 p-6 shadow-sm transition-all hover:border-gold hover:shadow-lg"
           >
             <div className="flex items-center justify-between">
               <span className="font-heading text-xs font-bold uppercase tracking-wider text-maroon">
@@ -79,7 +79,7 @@ export default function AccountPage() {
 
           <Link
             href="/wishlist"
-            className="group flex flex-col justify-between rounded-3xl border border-gold/30 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gold hover:shadow-lg"
+            className="group flex flex-col justify-between rounded-3xl border border-gold/30 bg-white p-6 shadow-sm transition-all hover:border-gold hover:shadow-lg"
           >
             <div className="flex items-center justify-between">
               <span className="font-heading text-xs font-bold uppercase tracking-wider text-maroon">
@@ -97,7 +97,7 @@ export default function AccountPage() {
 
           <Link
             href="/products"
-            className="group flex flex-col justify-between rounded-3xl border border-gold/30 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gold hover:shadow-lg"
+            className="group flex flex-col justify-between rounded-3xl border border-gold/30 bg-white p-6 shadow-sm transition-all hover:border-gold hover:shadow-lg"
           >
             <div className="flex items-center justify-between">
               <span className="font-heading text-xs font-bold uppercase tracking-wider text-maroon">
@@ -115,7 +115,7 @@ export default function AccountPage() {
 
           <Link
             href="/cart"
-            className="group flex flex-col justify-between rounded-3xl border border-gold/30 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gold hover:shadow-lg"
+            className="group flex flex-col justify-between rounded-3xl border border-gold/30 bg-white p-6 shadow-sm transition-all hover:border-gold hover:shadow-lg"
           >
             <div className="flex items-center justify-between">
               <span className="font-heading text-xs font-bold uppercase tracking-wider text-maroon">

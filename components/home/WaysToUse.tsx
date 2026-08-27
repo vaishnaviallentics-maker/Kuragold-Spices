@@ -44,7 +44,7 @@ export function WaysToUse({ products }: { products: Product[] }) {
             <Link
               key={product.id}
               href={`/products/${product.slug}`}
-              className="group rounded-xl border border-border-gold/60 bg-ivory px-6 py-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+              className="group rounded-xl border border-border-gold/60 bg-ivory px-6 py-8 transition-all duration-300 hover:shadow-md"
             >
               <Icon className="mb-4 text-gold" size={28} aria-hidden="true" />
               <h3 className="mb-2 font-heading text-lg font-bold text-maroon group-hover:text-crimson">

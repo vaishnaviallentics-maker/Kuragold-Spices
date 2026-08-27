@@ -54,7 +54,7 @@ export function RecipesComingSoon() {
             <Link
               key={recipe.id}
               href="/recipes"
-              className="group flex flex-col overflow-hidden rounded-3xl border border-border-gold/60 bg-white shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-lg"
+              className="group flex flex-col overflow-hidden rounded-3xl border border-border-gold/60 bg-white shadow-xs transition-all duration-300 hover:border-gold hover:shadow-lg"
             >
               <div className="relative aspect-[16/10] w-full bg-cream overflow-hidden sm:h-48 sm:aspect-auto">
                 <Image
@@ -62,7 +62,7 @@ export function RecipesComingSoon() {
                   alt={recipe.title}
                   fill
                   sizes="(min-width: 640px) 33vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 group-"
                 />
                 <span className="absolute top-3 left-3 rounded-full bg-maroon px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wider text-ivory shadow-xs">
                   {recipe.category}
@@ -92,7 +92,7 @@ export function RecipesComingSoon() {
 
                 <div className="pt-2 flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-maroon group-hover:text-gold">
                   <span>View Recipe</span>
-                  <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  <ArrowRight size={14} className="transition-transform" />
                 </div>
               </div>
             </Link>
@@ -103,7 +103,7 @@ export function RecipesComingSoon() {
         <div className="text-center pt-2">
           <Link
             href="/recipes"
-            className="inline-flex items-center gap-2 rounded-full bg-maroon px-8 py-3.5 font-body text-xs font-bold uppercase tracking-widest text-white hover:bg-maroon-dark shadow-md transition-all duration-200 hover:scale-105"
+            className="inline-flex items-center gap-2 rounded-full bg-maroon px-8 py-3.5 font-body text-xs font-bold uppercase tracking-widest text-white hover:bg-maroon-dark shadow-md transition-all duration-200"
           >
             <Utensils size={15} />
             Explore All Recipes

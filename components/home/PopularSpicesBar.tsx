@@ -34,7 +34,7 @@ export function PopularSpicesBar() {
             <Link
               key={spice.name}
               href={spice.href}
-              className="group flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-1"
+              className="group flex flex-col items-center text-center transition-transform duration-300"
             >
               <div className="relative h-24 w-32 sm:h-28 sm:w-36 overflow-hidden">
                 <Image
@@ -42,7 +42,7 @@ export function PopularSpicesBar() {
                   alt={spice.name}
                   fill
                   sizes="144px"
-                  className="object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105"
+                  className="object-contain drop-shadow-md transition-transform duration-300 group-"
                 />
               </div>
               <span className="mt-1.5 font-heading text-xs sm:text-sm font-bold text-maroon group-hover:text-gold transition-colors">

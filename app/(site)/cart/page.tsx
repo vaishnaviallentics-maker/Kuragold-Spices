@@ -45,7 +45,7 @@ function CartSuggestedProductCard({ product }: { product: Product }) {
             alt={product.name}
             fill
             sizes="112px"
-            className="object-contain p-2 transition-transform duration-300 hover:scale-105"
+            className="object-contain p-2 transition-transform duration-300"
           />
         )}
       </Link>

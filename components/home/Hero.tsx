@@ -66,7 +66,7 @@ export function Hero({ claims }: HeroProps) {
               alt="Authentic Indian Spices - Kura Gold Spices"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center transition-transform duration-700 hover:scale-105"
+              className="object-cover object-center transition-transform duration-700"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />

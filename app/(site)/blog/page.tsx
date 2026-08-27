@@ -40,7 +40,7 @@ export default async function BlogPage() {
               <Link
                 key={blog.id}
                 href={`/blog/${blog.slug}`}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border-gold/50 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-lg"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-border-gold/50 bg-white shadow-sm transition-all duration-300 hover:border-gold hover:shadow-lg"
               >
                 <div className="relative h-48 w-full bg-cream">
                   {blog.cover_image && (
@@ -49,7 +49,7 @@ export default async function BlogPage() {
                       alt={blog.title}
                       fill
                       sizes="(min-width: 1024px) 33vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-500 group-"
                     />
                   )}
                   <span className="absolute top-3 left-3 rounded-full bg-maroon px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wider text-ivory">

@@ -30,7 +30,7 @@ export function ProductCard({ product }: { product: Product }) {
               alt={product.name}
               fill
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-              className="object-contain p-4 opacity-75 transition-opacity duration-300 group-hover:opacity-100 group-hover:scale-105"
+              className="object-contain p-4 opacity-75 transition-opacity duration-300 group-hover:opacity-100 group-"
             />
           ) : (
             <div className="flex h-full items-center justify-center text-4xl opacity-30">🌿</div>
@@ -65,7 +65,7 @@ export function ProductCard({ product }: { product: Product }) {
   }
 
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-border-gold/60 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-border-gold/60 bg-white shadow-sm transition-all duration-300 hover:shadow-lg">
       <Link href={`/products/${product.slug}`} className="relative block h-48 bg-cream">
         {product.image_url && (
           <Image
@@ -73,7 +73,7 @@ export function ProductCard({ product }: { product: Product }) {
             alt={product.name}
             fill
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            className="object-contain p-6 transition-transform duration-300 group-hover:scale-105"
+            className="object-contain p-6 transition-transform duration-300 group-"
           />
         )}
       </Link>

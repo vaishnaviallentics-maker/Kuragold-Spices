@@ -97,7 +97,7 @@ export default function RecipesPage() {
               {filteredRecipes.map((recipe) => (
                 <div
                   key={recipe.id}
-                  className="group flex flex-col sm:flex-row overflow-hidden rounded-3xl border border-border-gold/60 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-xl"
+                  className="group flex flex-col sm:flex-row overflow-hidden rounded-3xl border border-border-gold/60 bg-white shadow-sm transition-all duration-300 hover:border-gold hover:shadow-xl"
                 >
                   {/* Image Column */}
                   <div className="relative h-60 w-full sm:w-2/5 shrink-0 bg-cream">
@@ -106,7 +106,7 @@ export default function RecipesPage() {
                       alt={recipe.title}
                       fill
                       sizes="(min-width: 640px) 40vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-500 group-"
                     />
                     <span className="absolute top-3 left-3 rounded-full bg-maroon px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wider text-ivory shadow-xs">
                       {recipe.category}
@@ -208,7 +208,7 @@ export default function RecipesPage() {
                     alt={fut.title}
                     fill
                     sizes="(min-width: 640px) 33vw, 100vw"
-                    className="object-cover transition-transform duration-500 hover:scale-105"
+                    className="object-cover transition-transform duration-500"
                   />
                   <span className="absolute top-2.5 left-2.5 rounded-full bg-gold-dark px-3 py-0.5 font-body text-[10px] font-bold uppercase tracking-wider text-white shadow-xs">
                     Coming Soon
@@ -253,7 +253,7 @@ export default function RecipesPage() {
               href={buildGeneralMessage('Hello Kura Gold Team, I would like to submit my family recipe!')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-8 py-3 font-body text-xs font-bold uppercase tracking-widest text-maroon-dark hover:bg-gold-light shadow-md transition-transform hover:scale-105"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-8 py-3 font-body text-xs font-bold uppercase tracking-widest text-maroon-dark hover:bg-gold-light shadow-md transition-transform"
             >
               <MessageCircle size={16} />
               Submit Recipe via WhatsApp

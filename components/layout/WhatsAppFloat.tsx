@@ -9,7 +9,7 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Order on WhatsApp"
-      className="group fixed bottom-7 right-7 z-float flex h-[58px] w-[58px] items-center justify-center rounded-full bg-whatsapp shadow-[0_4px_20px_rgba(37,211,102,0.5)] transition-transform duration-200 hover:scale-110"
+      className="group fixed bottom-7 right-7 z-float flex h-[58px] w-[58px] items-center justify-center rounded-full bg-whatsapp shadow-[0_4px_20px_rgba(37,211,102,0.5)] transition-transform duration-200"
     >
       <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-md bg-maroon-dark px-3 py-1.5 font-body text-xs font-bold text-gold opacity-0 transition-opacity duration-200 group-hover:opacity-100">
         Order on WhatsApp
