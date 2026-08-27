@@ -214,113 +214,128 @@ export function Navbar() {
         )}
       >
         {/* Drawer Sticky Top Bar */}
-        <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-3 border-b border-gold/30 bg-maroon-dark shadow-md">
+        <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-3 border-b border-gold/20 bg-maroon-dark">
           <Link href="/" onClick={() => setOpen(false)} className="flex items-center">
             <Image
               src="/logo.webp"
               alt={SITE_NAME}
               width={1024}
               height={559}
-              className="h-12 w-auto object-contain"
+              className="h-11 w-auto object-contain"
             />
           </Link>
           <button
             type="button"
             aria-label="Close menu"
             onClick={() => setOpen(false)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-maroon transition-colors"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-gold transition-colors hover:bg-white/10"
           >
-            <X size={24} />
+            <X size={22} />
           </button>
         </div>
 
-        {/* Drawer Navigation Links */}
-        <div className="flex-1 px-6 py-6 space-y-6">
-          <nav className="flex flex-col space-y-3">
-            {NAV_LINKS.map((link) => {
-              const active = isActive(pathname, link.href)
-              const hasDropdown = Boolean(link.dropdown?.length)
+        {/* Drawer Navigation Links — simple, scannable list */}
+        <nav className="flex flex-col px-5 py-2">
+          {NAV_LINKS.map((link) => {
+            const active = isActive(pathname, link.href)
+            const hasDropdown = Boolean(link.dropdown?.length)
 
+            if (hasDropdown && link.dropdown) {
               return (
-                <div key={link.href} className="border-b border-gold/10 pb-2.5">
-                  <div className="flex items-center justify-between">
-                    <Link
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className={cn(
-                        'font-heading text-lg font-bold uppercase tracking-wider text-gold-muted transition-colors hover:text-gold-light',
-                        active && 'text-gold-light font-black'
-                      )}
-                    >
-                      {link.label}
-                    </Link>
+                <details key={link.href} className="group border-b border-gold/10">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-4 font-heading text-lg font-bold text-gold-muted transition-colors [&::-webkit-details-marker]:hidden">
+                    <span className={cn(active && 'text-gold-light')}>{link.label}</span>
+                    <ChevronDown
+                      size={18}
+                      className="shrink-0 text-gold/60 transition-transform duration-200 group-open:rotate-180"
+                    />
+                  </summary>
+                  <div className="flex flex-col gap-0.5 pb-3">
+                    {link.dropdown[0].items.map((subItem) => (
+                      <Link
+                        key={subItem.label}
+                        href={subItem.href}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          'rounded-lg px-3 py-2.5 font-body text-sm text-gold-muted/90 transition-colors hover:bg-white/5 hover:text-gold-light',
+                          isActive(pathname, subItem.href) && 'text-gold-light'
+                        )}
+                      >
+                        {subItem.label}
+                      </Link>
+                    ))}
                   </div>
-
-                  {/* Mobile Dropdown items if present */}
-                  {hasDropdown && link.dropdown && (
-                    <div className="mt-2.5 pl-4 border-l-2 border-gold/30 space-y-2">
-                      {link.dropdown[0].items.map((subItem) => (
-                        <Link
-                          key={subItem.label}
-                          href={subItem.href}
-                          onClick={() => setOpen(false)}
-                          className={cn(
-                            'block font-body text-xs font-semibold text-gold-muted/80 hover:text-gold-light py-1',
-                            isActive(pathname, subItem.href) && 'text-gold-light font-bold'
-                          )}
-                        >
-                          • {subItem.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                </details>
               )
-            })}
-          </nav>
+            }
 
-          {/* Customer Account & Order Actions */}
-          <div className="space-y-3 border-t border-gold/20 pt-6">
-            <div className="grid grid-cols-2 gap-3">
+            return (
               <Link
-                href={user ? '/account' : '/login'}
+                key={link.href}
+                href={link.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-xl border border-gold/40 bg-maroon/60 py-2.5 font-body text-xs font-bold text-gold-light hover:bg-gold hover:text-maroon transition-all"
+                className={cn(
+                  'border-b border-gold/10 py-4 font-heading text-lg font-bold text-gold-muted transition-colors hover:text-gold-light',
+                  active && 'text-gold-light'
+                )}
               >
-                <UserIcon size={16} />
-                <span>{user ? 'My Account' : 'Sign In'}</span>
+                {link.label}
               </Link>
+            )
+          })}
+        </nav>
 
-              <Link
-                href="/wishlist"
-                onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-xl border border-gold/40 bg-maroon/60 py-2.5 font-body text-xs font-bold text-gold-light hover:bg-gold hover:text-maroon transition-all"
-              >
-                <Heart size={16} />
-                <span>Wishlist {wishlistCount > 0 && `(${wishlistCount})`}</span>
-              </Link>
-            </div>
+        {/* Quick actions + primary CTA */}
+        <div className="mt-auto flex flex-col gap-4 px-5 py-6">
+          <div className="grid grid-cols-3 gap-2.5">
+            <Link
+              href={user ? '/account' : '/login'}
+              onClick={() => setOpen(false)}
+              className="flex flex-col items-center gap-1.5 rounded-xl border border-gold/25 py-3 text-gold-light transition-colors hover:bg-white/5"
+            >
+              <UserIcon size={19} />
+              <span className="font-body text-[11px] font-bold">{user ? 'Account' : 'Sign In'}</span>
+            </Link>
+
+            <Link
+              href="/wishlist"
+              onClick={() => setOpen(false)}
+              className="relative flex flex-col items-center gap-1.5 rounded-xl border border-gold/25 py-3 text-gold-light transition-colors hover:bg-white/5"
+            >
+              <Heart size={19} />
+              <span className="font-body text-[11px] font-bold">Wishlist</span>
+              {wishlistCount > 0 && (
+                <span className="absolute right-2.5 top-2 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-maroon px-1 font-body text-[9px] font-bold text-white">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
 
             <Link
               href="/cart"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-xl border border-gold/40 bg-gold/15 py-3 font-body text-xs font-bold uppercase tracking-wider text-gold-light hover:bg-gold hover:text-maroon transition-all"
+              className="relative flex flex-col items-center gap-1.5 rounded-xl border border-gold/25 py-3 text-gold-light transition-colors hover:bg-white/5"
             >
-              <ShoppingBag size={18} />
-              <span>View Cart {totalItems > 0 && `(${totalItems})`}</span>
+              <ShoppingBag size={19} />
+              <span className="font-body text-[11px] font-bold">Cart</span>
+              {totalItems > 0 && (
+                <span className="absolute right-2.5 top-2 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-whatsapp px-1 font-body text-[9px] font-bold text-white">
+                  {totalItems}
+                </span>
+              )}
             </Link>
-
-            <a
-              href={ORDER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-whatsapp px-6 py-3.5 font-body text-xs font-bold uppercase tracking-wide text-white hover:bg-whatsapp-dark shadow-md"
-            >
-              <MessageCircle size={18} />
-              Order on WhatsApp
-            </a>
           </div>
+
+          <a
+            href={ORDER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3.5 font-body text-sm font-bold uppercase tracking-wide text-white shadow-md transition-colors hover:bg-whatsapp-dark"
+          >
+            <MessageCircle size={18} />
+            Order on WhatsApp
+          </a>
         </div>
       </div>
     </header>
