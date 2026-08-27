@@ -45,15 +45,15 @@ export function ShopByCategory() {
             <Link
               key={cat.title}
               href={cat.href}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border-gold/50 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-xl"
+              className="flex flex-col overflow-hidden rounded-2xl border border-border-gold/50 bg-white shadow-sm"
             >
               <div className="relative h-48 w-full overflow-hidden bg-cream">
                 <Image
                   src={cat.image}
                   alt={cat.title}
                   fill
-                  sizes="(min-width: 1024px) 33vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute top-3 right-3 rounded-full bg-black/70 backdrop-blur-xs px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wider text-gold-light">
@@ -67,7 +67,7 @@ export function ShopByCategory() {
                   <p className="mt-1 font-body text-xs text-gold-muted">{cat.subtitle}</p>
                 </div>
 
-                <div className="mt-4 flex items-center gap-1 font-body text-xs font-bold uppercase tracking-wider text-gold transition-transform group-hover:translate-x-1">
+                <div className="mt-4 flex items-center gap-1 font-body text-xs font-bold uppercase tracking-wider text-gold">
                   <span>Explore Category</span>
                   <span>→</span>
                 </div>
