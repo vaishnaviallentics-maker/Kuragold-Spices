@@ -30,7 +30,7 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
                   alt="Kura Gold Spices Heritage"
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-contain sm:object-cover"
+                  className="object-contain lg:object-cover"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-maroon-dark/50 via-transparent to-transparent lg:hidden" />

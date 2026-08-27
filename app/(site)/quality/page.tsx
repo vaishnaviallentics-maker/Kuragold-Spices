@@ -174,7 +174,7 @@ export default async function QualityPage() {
                 alt="Kura Gold Authentic Spices"
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover object-center"
+                className="object-contain object-center lg:object-cover"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-r from-maroon-dark/40 via-transparent to-transparent" />
@@ -194,7 +194,7 @@ export default async function QualityPage() {
                 alt="Mortar and pestle spices"
                 fill
                 sizes="(max-width: 1024px) 100vw, 33vw"
-                className="object-cover object-center"
+                className="object-contain object-center lg:object-cover"
                 priority
               />
               {/* Overlay Gradient at Bottom */}
@@ -513,7 +513,7 @@ export default async function QualityPage() {
                 alt="Kura Gold Pure Range"
                 fill
                 sizes="(max-width: 1024px) 100vw, 33vw"
-                className="object-cover object-center"
+                className="object-contain object-center lg:object-cover"
               />
             </div>
 
