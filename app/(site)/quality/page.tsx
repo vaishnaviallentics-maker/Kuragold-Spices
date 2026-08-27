@@ -173,7 +173,7 @@ export default async function QualityPage() {
                 alt="Kura Gold Authentic Spices"
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover object-center"
+                className="object-contain sm:object-cover object-center"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-maroon-dark/40 via-transparent to-transparent" />
