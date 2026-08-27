@@ -202,7 +202,7 @@ export default function RecipesPage() {
                 key={fut.id}
                 className="flex flex-col overflow-hidden rounded-2xl border border-border-gold/60 bg-white p-5 shadow-xs transition-all hover:border-gold hover:shadow-md space-y-4"
               >
-                <div className="relative h-44 w-full rounded-xl bg-cream overflow-hidden">
+                <div className="relative aspect-[16/10] w-full rounded-xl bg-cream overflow-hidden sm:h-44 sm:aspect-auto">
                   <Image
                     src={fut.image}
                     alt={fut.title}

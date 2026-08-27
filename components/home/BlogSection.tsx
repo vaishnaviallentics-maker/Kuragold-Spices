@@ -24,15 +24,16 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
           <div className="overflow-hidden rounded-3xl border border-border-gold/60 bg-white shadow-lg">
             <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
               {/* Left Image Showcase */}
-              <div className="relative h-72 lg:h-[420px] lg:col-span-5">
+              <div className="relative aspect-[16/9] w-full sm:h-72 lg:h-[420px] lg:col-span-5 rounded-t-3xl lg:rounded-tr-none lg:rounded-l-3xl overflow-hidden bg-cream">
                 <Image
                   src="/products/kura_gold_our_story_kitchen.webp"
                   alt="Kura Gold Spices Heritage"
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
                   className="object-cover"
+                  priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-maroon-dark/80 via-transparent to-transparent lg:hidden" />
+                <div className="absolute inset-0 bg-gradient-to-t from-maroon-dark/50 via-transparent to-transparent lg:hidden" />
               </div>
 
               {/* Right Story Content */}

@@ -60,7 +60,7 @@ export function Hero({ claims }: HeroProps) {
 
         {/* Right Side: Hero Image Showcase */}
         <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-          <div className="relative h-64 w-full overflow-hidden rounded-3xl border-2 border-gold/40 shadow-2xl sm:h-80 lg:h-[400px]">
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border-2 border-gold/40 shadow-2xl sm:h-80 sm:aspect-auto lg:h-[400px]">
             <Image
               src="/hero-spices-showcase.png"
               alt="Authentic Indian Spices - Kura Gold Spices"

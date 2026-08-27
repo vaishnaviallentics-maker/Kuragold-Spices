@@ -18,12 +18,12 @@ export default async function BlogPage() {
     <main className="bg-ivory px-6 py-12 sm:px-10 lg:py-16">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center">
-          <SectionLabel className="justify-center">Our Blog</SectionLabel>
+          <SectionLabel className="justify-center">OUR BLOG</SectionLabel>
           <h1 className="font-heading text-3xl font-bold text-maroon sm:text-4xl">
-            From the Kura Gold Kitchen
+            Stories, Recipes &amp; Cooking Inspiration
           </h1>
           <p className="mt-2 text-sm text-muted">
-            Stories, tips and inspiration for better cooking.
+            Explore articles on spice purity, authentic recipes, and kitchen tips.
           </p>
         </div>
 

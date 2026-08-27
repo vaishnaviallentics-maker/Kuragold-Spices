@@ -166,10 +166,8 @@ export default async function QualityPage() {
               <p className="max-w-xl font-body text-xs text-cream/90 sm:text-sm leading-relaxed">
                 Every Kura Gold product is created with a simple purpose — to bring dependable quality and authentic flavour to everyday cooking.
               </p>
-            </div>
-
-            {/* Right Image Container */}
-            <div className="relative h-40 w-full overflow-hidden rounded-2xl sm:h-48 lg:col-span-5 lg:h-[220px]">
+            </div>            {/* Right Image Container */}
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl sm:h-48 sm:aspect-auto lg:col-span-5 lg:h-[220px]">
               <Image
                 src="/about/quality-hero-spices.jpg"
                 alt="Kura Gold Authentic Spices"
@@ -178,7 +176,7 @@ export default async function QualityPage() {
                 className="object-cover object-center"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-maroon-dark/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-maroon-dark/40 via-transparent to-transparent" />
             </div>
           </div>
         </div>
@@ -189,7 +187,7 @@ export default async function QualityPage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-12">
             {/* Left Column: Mortar & Pestle Image Card */}
-            <div className="relative overflow-hidden rounded-[24px] border-2 border-gold/40 bg-[#3D0A0A] shadow-md lg:col-span-4 min-h-[340px] sm:min-h-[360px]">
+            <div className="relative aspect-[4/3] sm:aspect-auto w-full overflow-hidden rounded-[24px] border-2 border-gold/40 bg-[#3D0A0A] shadow-md lg:col-span-4 min-h-[260px] sm:min-h-[360px]">
               <Image
                 src="/about/mortar-pestle-clean.png"
                 alt="Mortar and pestle spices"

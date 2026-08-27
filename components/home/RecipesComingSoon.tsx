@@ -56,7 +56,7 @@ export function RecipesComingSoon() {
               href="/recipes"
               className="group flex flex-col overflow-hidden rounded-3xl border border-border-gold/60 bg-white shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-lg"
             >
-              <div className="relative h-48 w-full bg-cream overflow-hidden">
+              <div className="relative aspect-[16/10] w-full bg-cream overflow-hidden sm:h-48 sm:aspect-auto">
                 <Image
                   src={recipe.image}
                   alt={recipe.title}
