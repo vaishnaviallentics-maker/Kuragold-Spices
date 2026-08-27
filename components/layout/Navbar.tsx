@@ -209,70 +209,105 @@ export function Navbar() {
       {/* Mobile Drawer Overlay */}
       <div
         className={cn(
-          'fixed inset-0 z-nav flex flex-col bg-maroon transition-opacity duration-300 lg:hidden overflow-y-auto',
-          open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+          'fixed inset-0 z-[99999] flex flex-col bg-maroon-dark text-ivory transition-all duration-300 lg:hidden overflow-y-auto',
+          open ? 'pointer-events-auto opacity-100 translate-x-0' : 'pointer-events-none opacity-0 -translate-x-full'
         )}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gold/20">
-          <span className="font-heading text-lg font-bold text-gold">{SITE_NAME}</span>
-          <button type="button" aria-label="Close menu" onClick={() => setOpen(false)} className="text-gold">
-            <X size={28} />
+        {/* Drawer Sticky Top Bar */}
+        <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-3 border-b border-gold/30 bg-maroon-dark shadow-md">
+          <Link href="/" onClick={() => setOpen(false)} className="flex items-center">
+            <Image
+              src="/logo.webp"
+              alt={SITE_NAME}
+              width={1024}
+              height={559}
+              className="h-12 w-auto object-contain"
+            />
+          </Link>
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-maroon transition-colors"
+          >
+            <X size={24} />
           </button>
         </div>
 
-        <nav className="flex flex-1 flex-col items-center justify-center gap-6 py-8 px-6">
-          {NAV_LINKS.map((link) => {
-            const active = isActive(pathname, link.href)
-            return (
+        {/* Drawer Navigation Links */}
+        <div className="flex-1 px-6 py-6 space-y-6">
+          <nav className="flex flex-col space-y-3">
+            {NAV_LINKS.map((link) => {
+              const active = isActive(pathname, link.href)
+              const hasDropdown = Boolean(link.dropdown?.length)
+
+              return (
+                <div key={link.href} className="border-b border-gold/10 pb-2.5">
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        'font-heading text-lg font-bold uppercase tracking-wider text-gold-muted transition-colors hover:text-gold-light',
+                        active && 'text-gold-light font-black'
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  </div>
+
+                  {/* Mobile Dropdown items if present */}
+                  {hasDropdown && link.dropdown && (
+                    <div className="mt-2.5 pl-4 border-l-2 border-gold/30 space-y-2">
+                      {link.dropdown[0].items.map((subItem) => (
+                        <Link
+                          key={subItem.label}
+                          href={subItem.href}
+                          onClick={() => setOpen(false)}
+                          className={cn(
+                            'block font-body text-xs font-semibold text-gold-muted/80 hover:text-gold-light py-1',
+                            isActive(pathname, subItem.href) && 'text-gold-light font-bold'
+                          )}
+                        >
+                          • {subItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </nav>
+
+          {/* Customer Account & Order Actions */}
+          <div className="space-y-3 border-t border-gold/20 pt-6">
+            <div className="grid grid-cols-2 gap-3">
               <Link
-                key={link.href}
-                href={link.href}
+                href={user ? '/account' : '/login'}
                 onClick={() => setOpen(false)}
-                className={cn(
-                  'font-heading text-xl uppercase tracking-wide text-gold-muted transition-colors hover:text-gold-light',
-                  active && 'text-gold-light'
-                )}
+                className="flex items-center justify-center gap-2 rounded-xl border border-gold/40 bg-maroon/60 py-2.5 font-body text-xs font-bold text-gold-light hover:bg-gold hover:text-maroon transition-all"
               >
-                {link.label}
+                <UserIcon size={16} />
+                <span>{user ? 'My Account' : 'Sign In'}</span>
               </Link>
-            )
-          })}
 
-          <div className="w-full max-w-xs border-t border-gold/20 pt-6 mt-2 text-center space-y-4">
-            <Link
-              href={user ? '/account' : '/login'}
-              onClick={() => setOpen(false)}
-              className={cn(
-                'flex items-center justify-center gap-2 font-heading text-xl uppercase tracking-wide text-gold-muted hover:text-gold-light',
-                (isActive(pathname, '/login') || isActive(pathname, '/account')) && 'text-gold-light'
-              )}
-            >
-              <UserIcon size={20} />
-              {user ? 'My Account' : 'Sign In'}
-            </Link>
-
-            <Link
-              href="/wishlist"
-              onClick={() => setOpen(false)}
-              className={cn(
-                'flex items-center justify-center gap-2 font-heading text-xl uppercase tracking-wide text-gold-muted hover:text-gold-light',
-                isActive(pathname, '/wishlist') && 'text-gold-light'
-              )}
-            >
-              <Heart size={20} />
-              Wishlist{wishlistCount > 0 && ` (${wishlistCount})`}
-            </Link>
+              <Link
+                href="/wishlist"
+                onClick={() => setOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-xl border border-gold/40 bg-maroon/60 py-2.5 font-body text-xs font-bold text-gold-light hover:bg-gold hover:text-maroon transition-all"
+              >
+                <Heart size={16} />
+                <span>Wishlist {wishlistCount > 0 && `(${wishlistCount})`}</span>
+              </Link>
+            </div>
 
             <Link
               href="/cart"
               onClick={() => setOpen(false)}
-              className={cn(
-                'flex items-center justify-center gap-2 font-heading text-xl uppercase tracking-wide text-gold-muted hover:text-gold-light',
-                isActive(pathname, '/cart') && 'text-gold-light'
-              )}
+              className="flex items-center justify-center gap-2 rounded-xl border border-gold/40 bg-gold/15 py-3 font-body text-xs font-bold uppercase tracking-wider text-gold-light hover:bg-gold hover:text-maroon transition-all"
             >
-              <ShoppingBag size={20} />
-              Cart{totalItems > 0 && ` (${totalItems})`}
+              <ShoppingBag size={18} />
+              <span>View Cart {totalItems > 0 && `(${totalItems})`}</span>
             </Link>
 
             <a
@@ -280,13 +315,13 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3.5 font-body text-xs font-bold uppercase tracking-wide text-white hover:bg-whatsapp-dark shadow-md"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-whatsapp px-6 py-3.5 font-body text-xs font-bold uppercase tracking-wide text-white hover:bg-whatsapp-dark shadow-md"
             >
               <MessageCircle size={18} />
               Order on WhatsApp
             </a>
           </div>
-        </nav>
+        </div>
       </div>
     </header>
   )

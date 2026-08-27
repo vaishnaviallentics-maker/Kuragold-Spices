@@ -59,18 +59,19 @@ export function Hero({ claims }: HeroProps) {
         </div>
 
         {/* Right Side: Hero Image Showcase */}
-        <div className="mx-auto w-full max-w-md lg:max-w-none">
-          <div className="relative overflow-hidden rounded-3xl border-2 border-gold/40 shadow-2xl bg-maroon-dark">
+        <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+          <div className="relative h-64 w-full overflow-hidden rounded-3xl border-2 border-gold/40 shadow-2xl sm:h-80 lg:h-[400px]">
             <Image
               src="/hero-spices-showcase.png"
               alt="Authentic Indian Spices - Kura Gold Spices"
-              width={1000}
-              height={650}
-              className="w-full h-auto object-contain rounded-3xl"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-center transition-transform duration-700 hover:scale-105"
               priority
             />
-            <div className="absolute bottom-3 left-3 right-3 rounded-xl bg-black/80 backdrop-blur-md border border-gold/40 p-2.5 text-center text-white">
-              <span className="font-heading text-[11px] font-bold uppercase tracking-wider text-gold-light">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-black/80 backdrop-blur-md border border-gold/40 p-3 text-center text-white">
+              <span className="font-heading text-xs font-bold uppercase tracking-wider text-gold-light">
                 ✦ 100% PURE &amp; NATURAL HYDERABAD SPICES ✦
               </span>
             </div>

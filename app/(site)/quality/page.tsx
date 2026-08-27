@@ -168,15 +168,16 @@ export default async function QualityPage() {
               </p>
             </div>
             {/* Right Image Container */}
-            <div className="w-full overflow-hidden rounded-2xl border border-gold/30 lg:col-span-5 bg-maroon-dark">
+            <div className="relative h-40 w-full overflow-hidden rounded-2xl sm:h-48 lg:col-span-5 lg:h-[220px]">
               <Image
                 src="/about/quality-hero-spices.jpg"
                 alt="Kura Gold Authentic Spices"
-                width={1000}
-                height={562}
-                className="w-full h-auto object-contain rounded-2xl"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover object-center"
                 priority
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-maroon-dark/40 via-transparent to-transparent" />
             </div>
           </div>
         </div>
@@ -187,13 +188,13 @@ export default async function QualityPage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-12">
             {/* Left Column: Mortar & Pestle Image Card */}
-            <div className="relative overflow-hidden rounded-[24px] border-2 border-gold/40 bg-[#3D0A0A] shadow-md lg:col-span-4 flex flex-col items-center justify-center p-3">
+            <div className="relative overflow-hidden rounded-[24px] border-2 border-gold/40 bg-[#3D0A0A] shadow-md lg:col-span-4 min-h-[340px] sm:min-h-[360px]">
               <Image
                 src="/about/mortar-pestle-clean.png"
                 alt="Mortar and pestle spices"
-                width={800}
-                height={800}
-                className="w-full h-auto object-contain rounded-2xl"
+                fill
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                className="object-cover object-center"
                 priority
               />
               {/* Overlay Gradient at Bottom */}
